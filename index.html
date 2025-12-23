@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RobertWalters - International Job Opportunities</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Glassmorphism Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <i class="fas fa-globe-americas"></i>
+                <span>RobertWalters</span>
+            </div>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link" onclick="scrollToSection('home')">Home</a></li>
+                <li><a href="#eligibility" class="nav-link" onclick="scrollToSection('eligibility')">Eligibility</a></li>
+                <li><a href="#opportunities" class="nav-link" onclick="scrollToSection('opportunities')">Opportunities</a></li>
+                <li><a href="#employers" class="nav-link" onclick="scrollToSection('employers')">Employers</a></li>
+                <li><a href="#resources" class="nav-link" onclick="scrollToSection('resources')">Resources</a></li>
+                <li><a href="#dashboard" class="dashboard-btn"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                <li><button class="login-btn" id="loginBtn"><i class="fas fa-user"></i> Login / Sign Up</button></li>
+            </ul>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="animated-bg">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+        </div>
+        
+        <div class="container hero-content">
+            <h1 class="hero-title">Your Gateway to <span class="gradient-text">Global Career Opportunities</span></h1>
+            <p class="hero-subtitle">AI-powered platform connecting skilled professionals with international job opportunities and visa pathways across 50+ countries</p>
+            
+            <div class="hero-cta">
+                <button class="btn btn-primary" onclick="scrollToSection('eligibility')">
+                    <i class="fas fa-rocket"></i> Check Eligibility
+                </button>
+                <button class="btn btn-secondary" onclick="scrollToSection('opportunities')">
+                    <i class="fas fa-search"></i> Explore Opportunities
+                </button>
+            </div>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Countries</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">Job Opportunities</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Success Rate</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">AI Support</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Eligibility Section 
+    <section class="section" id="eligibility">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Visa Eligibility Checker</h2>
+                <p class="section-subtitle">Discover your best visa pathways with AI-powered analysis</p>
+            </div>
+            
+            <div class="floating-card eligibility-card">
+                <div class="card-icon">
+                    <i class="fas fa-passport"></i>
+                </div>
+                
+                <form id="eligibilityForm">
+                    <div class="form-group">
+                        <label for="profession"><i class="fas fa-briefcase"></i> Current Profession</label>
+                        <select id="profession" required>
+                            <option value="">Select your profession</option>
+                            <option value="software-engineer">Software Engineer</option>
+                            <option value="healthcare">Healthcare Professional</option>
+                            <option value="engineer">Engineer (Civil/Mechanical/Electrical)</option>
+                            <option value="finance">Finance & Accounting</option>
+                            <option value="education">Education & Teaching</option>
+                            <option value="other">Other Skilled Professional</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="experience"><i class="fas fa-calendar-alt"></i> Years of Experience</label>
+                        <select id="experience" required>
+                            <option value="">Select experience level</option>
+                            <option value="0-2">0-2 years</option>
+                            <option value="3-5">3-5 years</option>
+                            <option value="6-10">6-10 years</option>
+                            <option value="10+">10+ years</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-magic"></i> Check My Path
+                    </button>
+                </form>
+                
+                <div class="eligibility-result" id="eligibilityResult"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Opportunities Section 
+    <section class="section" id="opportunities">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Global Opportunity Map</h2>
+                <p class="section-subtitle">Explore AI-recommended opportunities across the globe</p>
+            </div>
+            
+            <div class="floating-card map-card">
+                <!-- Updated to include detailed map with numerical indicators 
+                <div class="map-legend">
+                    <div class="legend-item">
+                        <div class="legend-color hot"></div>
+                        <span>2000+ Opportunities</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color medium"></div>
+                        <span>500-2000 Opportunities</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color cool"></div>
+                        <span>100-500 Opportunities</span>
+                    </div>
+                </div>
+                
+                <div class="world-map-container">
+                    <svg viewBox="0 0 1000 500" class="world-map" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Simplified world map paths -->
+                        <!-- North America 
+                        <path d="M 120 80 L 140 70 L 160 75 L 180 80 L 200 90 L 220 100 L 230 120 L 240 140 L 245 160 L 240 180 L 230 190 L 220 195 L 200 200 L 180 195 L 160 190 L 140 185 L 130 180 L 120 170 L 110 150 L 105 130 L 108 110 L 115 90 Z" 
+                              class="map-region" data-region="North America" />
+                        
+                        <!-- Europe 
+                        <path d="M 480 100 L 500 95 L 520 100 L 535 110 L 545 120 L 550 135 L 545 150 L 535 160 L 520 165 L 500 160 L 485 155 L 475 145 L 470 130 L 472 115 Z" 
+                              class="map-region" data-region="Europe" />
+                        
+                        <!-- Asia 
+                        <path d="M 600 120 L 650 110 L 700 115 L 750 125 L 780 140 L 800 160 L 810 180 L 805 200 L 790 215 L 770 225 L 740 230 L 710 225 L 680 215 L 650 200 L 625 185 L 605 165 L 595 145 Z" 
+                              class="map-region" data-region="Asia" />
+                        
+                        <!-- Australia 
+                        <path d="M 750 330 L 780 325 L 810 330 L 830 345 L 840 365 L 835 385 L 820 395 L 795 400 L 770 395 L 750 385 L 740 370 L 745 350 Z" 
+                              class="map-region" data-region="Australia" />
+                        
+                        <!-- South America 
+                        <path d="M 280 250 L 300 245 L 320 255 L 330 275 L 335 300 L 330 330 L 320 360 L 305 385 L 285 395 L 270 390 L 260 375 L 255 350 L 258 320 L 265 290 L 272 270 Z" 
+                              class="map-region" data-region="South America" />
+                        
+                        <!-- Africa 
+                        <path d="M 450 200 L 480 195 L 510 205 L 530 225 L 540 250 L 545 280 L 540 310 L 525 335 L 505 350 L 480 355 L 460 350 L 445 335 L 435 310 L 432 280 L 437 250 L 445 225 Z" 
+                              class="map-region" data-region="Africa" />
+                        
+                        <!-- Location markers with numerical values -->
+                        <!-- United States 
+                        <g class="location-marker" data-country="United States" data-jobs="3,245" data-top-visa="H-1B" onclick="showLocationDetails(this)">
+                            <circle cx="180" cy="120" r="8" class="marker-pulse"/>
+                            <circle cx="180" cy="120" r="6" class="marker-dot"/>
+                            <text x="180" y="105" class="marker-label">USA</text>
+                            <text x="180" y="140" class="marker-count">3,245</text>
+                        </g>
+                        
+                        <!-- Canada 
+                        <g class="location-marker" data-country="Canada" data-jobs="2,189" data-top-visa="Express Entry" onclick="showLocationDetails(this)">
+                            <circle cx="150" cy="90" r="8" class="marker-pulse"/>
+                            <circle cx="150" cy="90" r="6" class="marker-dot"/>
+                            <text x="150" y="75" class="marker-label">Canada</text>
+                            <text x="150" y="110" class="marker-count">2,189</text>
+                        </g>
+                        
+                        <!-- United Kingdom 
+                        <g class="location-marker" data-country="United Kingdom" data-jobs="1,876" data-top-visa="Skilled Worker" onclick="showLocationDetails(this)">
+                            <circle cx="490" cy="115" r="7" class="marker-pulse"/>
+                            <circle cx="490" cy="115" r="5" class="marker-dot"/>
+                            <text x="490" y="102" class="marker-label">UK</text>
+                            <text x="490" y="132" class="marker-count">1,876</text>
+                        </g>
+                        
+                        <!-- Germany 
+                        <g class="location-marker" data-country="Germany" data-jobs="2,034" data-top-visa="EU Blue Card" onclick="showLocationDetails(this)">
+                            <circle cx="510" cy="125" r="7" class="marker-pulse"/>
+                            <circle cx="510" cy="125" r="5" class="marker-dot"/>
+                            <text x="510" y="110" class="marker-label">Germany</text>
+                            <text x="510" y="142" class="marker-count">2,034</text>
+                        </g>
+                        
+                        <!-- Australia 
+                        <g class="location-marker" data-country="Australia" data-jobs="1,542" data-top-visa="Skilled Independent" onclick="showLocationDetails(this)">
+                            <circle cx="790" cy="365" r="8" class="marker-pulse"/>
+                            <circle cx="790" cy="365" r="6" class="marker-dot"/>
+                            <text x="790" y="350" class="marker-label">Australia</text>
+                            <text x="790" y="385" class="marker-count">1,542</text>
+                        </g>
+                        
+                        <!-- Singapore 
+                        <g class="location-marker" data-country="Singapore" data-jobs="987" data-top-visa="Employment Pass" onclick="showLocationDetails(this)">
+                            <circle cx="720" cy="240" r="6" class="marker-pulse"/>
+                            <circle cx="720" cy="240" r="4" class="marker-dot"/>
+                            <text x="720" y="227" class="marker-label">Singapore</text>
+                            <text x="720" y="257" class="marker-count">987</text>
+                        </g>
+                        
+                        <!-- UAE 
+                        <g class="location-marker" data-country="UAE (Dubai)" data-jobs="1,234" data-top-visa="Work Permit" onclick="showLocationDetails(this)">
+                            <circle cx="580" cy="200" r="7" class="marker-pulse"/>
+                            <circle cx="580" cy="200" r="5" class="marker-dot"/>
+                            <text x="580" y="185" class="marker-label">UAE</text>
+                            <text x="580" y="217" class="marker-count">1,234</text>
+                        </g>
+                        
+                        <!-- Japan 
+                        <g class="location-marker" data-country="Japan" data-jobs="876" data-top-visa="Skilled Worker" onclick="showLocationDetails(this)">
+                            <circle cx="820" cy="150" r="6" class="marker-pulse"/>
+                            <circle cx="820" cy="150" r="4" class="marker-dot"/>
+                            <text x="820" y="137" class="marker-label">Japan</text>
+                            <text x="820" y="167" class="marker-count">876</text>
+                        </g>
+                        
+                        <!-- New Zealand 
+                        <g class="location-marker" data-country="New Zealand" data-jobs="654" data-top-visa="Skilled Migrant" onclick="showLocationDetails(this)">
+                            <circle cx="860" cy="390" r="5" class="marker-pulse"/>
+                            <circle cx="860" cy="390" r="3" class="marker-dot"/>
+                            <text x="860" y="377" class="marker-label">NZ</text>
+                            <text x="860" y="407" class="marker-count">654</text>
+                        </g>
+                        
+                        <!-- Netherlands 
+                        <g class="location-marker" data-country="Netherlands" data-jobs="789" data-top-visa="Highly Skilled Migrant" onclick="showLocationDetails(this)">
+                            <circle cx="500" cy="120" r="6" class="marker-pulse"/>
+                            <circle cx="500" cy="120" r="4" class="marker-dot"/>
+                            <text x="500" y="107" class="marker-label">Netherlands</text>
+                            <text x="500" y="137" class="marker-count">789</text>
+                        </g>
+                        
+                        <!-- Sweden 
+                        <g class="location-marker" data-country="Sweden" data-jobs="543" data-top-visa="Work Permit" onclick="showLocationDetails(this)">
+                            <circle cx="520" cy="100" r="5" class="marker-pulse"/>
+                            <circle cx="520" cy="100" r="3" class="marker-dot"/>
+                            <text x="520" y="87" class="marker-label">Sweden</text>
+                            <text x="520" y="117" class="marker-count">543</text>
+                        </g>
+                    </svg>
+                    
+                    <!-- Location details popup 
+                    <div class="location-details" id="locationDetails">
+                        <button class="close-details" onclick="closeLocationDetails()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <h3 id="locationName"></h3>
+                        <div class="detail-row">
+                            <i class="fas fa-briefcase"></i>
+                            <div>
+                                <div class="detail-label">Available Positions</div>
+                                <div class="detail-value" id="locationJobs"></div>
+                            </div>
+                        </div>
+                        <div class="detail-row">
+                            <i class="fas fa-passport"></i>
+                            <div>
+                                <div class="detail-label">Popular Visa Type</div>
+                                <div class="detail-value" id="locationVisa"></div>
+                            </div>
+                        </div>
+                        <div class="detail-row">
+                            <i class="fas fa-chart-line"></i>
+                            <div>
+                                <div class="detail-label">Match Rate</div>
+                                <div class="detail-value" id="locationMatch"></div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-small" onclick="applyToLocation()">
+                            <i class="fas fa-paper-plane"></i> Apply Now
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Top destinations showcase 
+                <div class="top-destinations">
+                    <h3>Top Destinations This Month</h3>
+                    <div class="destination-grid">
+                        <div class="destination-item">
+                            <div class="destination-flag">🇺🇸</div>
+                            <div class="destination-info">
+                                <strong>United States</strong>
+                                <span>3,245 jobs</span>
+                            </div>
+                            <div class="destination-trend up">
+                                <i class="fas fa-arrow-up"></i> 15%
+                            </div>
+                        </div>
+                        <div class="destination-item">
+                            <div class="destination-flag">🇨🇦</div>
+                            <div class="destination-info">
+                                <strong>Canada</strong>
+                                <span>2,189 jobs</span>
+                            </div>
+                            <div class="destination-trend up">
+                                <i class="fas fa-arrow-up"></i> 22%
+                            </div>
+                        </div>
+                        <div class="destination-item">
+                            <div class="destination-flag">🇩🇪</div>
+                            <div class="destination-info">
+                                <strong>Germany</strong>
+                                <span>2,034 jobs</span>
+                            </div>
+                            <div class="destination-trend up">
+                                <i class="fas fa-arrow-up"></i> 18%
+                            </div>
+                        </div>
+                        <div class="destination-item">
+                            <div class="destination-flag">🇬🇧</div>
+                            <div class="destination-info">
+                                <strong>United Kingdom</strong>
+                                <span>1,876 jobs</span>
+                            </div>
+                            <div class="destination-trend up">
+                                <i class="fas fa-arrow-up"></i> 12%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Employers Section 
+    <section class="section" id="employers">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Connect with Employers</h2>
+                <p class="section-subtitle">Let AI match you with top international recruiters</p>
+            </div>
+            
+            <div class="floating-card employer-card">
+                <div class="card-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                
+                <form id="employerForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullName"><i class="fas fa-user"></i> Full Name</label>
+                            <input type="text" id="fullName" placeholder="John Doe" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                            <input type="email" id="email" placeholder="john@example.com" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
+                            <input type="tel" id="phone" placeholder="+1 234 567 8900" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="targetCountry"><i class="fas fa-globe"></i> Target Country</label>
+                            <select id="targetCountry" required>
+                                <option value="">Select country</option>
+                                <option value="usa">United States</option>
+                                <option value="canada">Canada</option>
+                                <option value="australia">Australia</option>
+                                <option value="uk">United Kingdom</option>
+                                <option value="germany">Germany</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="resume"><i class="fas fa-file-alt"></i> Resume / CV</label>
+                        <label for="resume" class="file-upload" id="fileLabel">
+                            <i class="fas fa-cloud-upload-alt"></i> Upload Resume (PDF, DOC)
+                        </label>
+                        <input type="file" id="resume" accept=".pdf,.doc,.docx" required style="display: none;">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message"><i class="fas fa-comment-alt"></i> Additional Information (Optional)</label>
+                        <textarea id="message" rows="4" placeholder="Tell us about your career goals and preferences..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-paper-plane"></i> Submit Application
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section 
+    <section class="section" id="resources">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Resources & Guides</h2>
+                <p class="section-subtitle">Everything you need for a successful international career move</p>
+            </div>
+            
+            <div class="resources-grid">
+                <div class="resource-card" onclick="downloadResource('visa-guide')">
+                    <div class="resource-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Visa Guide 2024</h3>
+                    <p>Comprehensive guide to visa requirements for 50+ countries</p>
+                    <button class="btn btn-secondary btn-small">
+                        <i class="fas fa-download"></i> Download PDF
+                    </button>
+                </div>
+                
+                <div class="resource-card" onclick="downloadResource('resume-templates')">
+                    <div class="resource-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>Resume Templates</h3>
+                    <p>Professional templates optimized for international applications</p>
+                    <button class="btn btn-secondary btn-small">
+                        <i class="fas fa-download"></i> Download ZIP
+                    </button>
+                </div>
+                
+                <div class="resource-card" onclick="downloadResource('interview-guide')">
+                    <div class="resource-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Interview Prep Guide</h3>
+                    <p>Master international job interviews with expert tips</p>
+                    <button class="btn btn-secondary btn-small">
+                        <i class="fas fa-download"></i> Download PDF
+                    </button>
+                </div>
+                
+                <div class="resource-card" onclick="downloadResource('checklist')">
+                    <div class="resource-icon">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <h3>Relocation Checklist</h3>
+                    <p>Step-by-step checklist for international relocation</p>
+                    <button class="btn btn-secondary btn-small">
+                        <i class="fas fa-download"></i> Download PDF
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Success Stories / Reviews 
+            <div class="reviews-section">
+                <h3 class="reviews-title">Success Stories</h3>
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"GlobalCareer helped me secure my dream job in Canada within 3 months! The AI matching was incredibly accurate."</p>
+                        <div class="review-author">
+                            <div class="author-avatar">SK</div>
+                            <div>
+                                <strong>Sarah Kim</strong>
+                                <span>Software Engineer → Canada</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="review-card">
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"The visa eligibility checker saved me so much time. I knew exactly which countries to target for my skillset."</p>
+                        <div class="review-author">
+                            <div class="author-avatar">MP</div>
+                            <div>
+                                <strong>Michael Patel</strong>
+                                <span>Healthcare Pro → Australia</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="review-card">
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Amazing platform! The resources and support throughout the application process were invaluable."</p>
+                        <div class="review-author">
+                            <div class="author-avatar">LC</div>
+                            <div>
+                                <strong>Lisa Chen</strong>
+                                <span>Data Analyst → Germany</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Section 
+    <section class="section dashboard-section" id="dashboard">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Application Dashboard</h2>
+                <p class="section-subtitle">Track your journey to international opportunities</p>
+            </div>
+            
+            <div class="dashboard-notice">
+                <i class="fas fa-info-circle"></i>
+                <p>Please <a href="#" onclick="openLoginModal(); return false;" style="color: var(--secondary); text-decoration: underline;">login or sign up</a> to access your application dashboard.</p>
+            </div>
+            
+            <div id="dashboardContent" style="display: none;">
+                <div class="tracker-card floating-card">
+                    <h3><i class="fas fa-chart-line"></i> Application Tracker</h3>
+                    
+                    <div class="application-item">
+                        <div class="app-header">
+                            <div>
+                                <strong>Senior Software Engineer - Google</strong>
+                                <span class="app-location"><i class="fas fa-map-marker-alt"></i> United States</span>
+                            </div>
+                            <span class="app-date">Applied: Dec 15, 2024</span>
+                        </div>
+                        
+                        <div class="progress-tracker">
+                            <div class="progress-step completed">
+                                <div class="step-icon"><i class="fas fa-check"></i></div>
+                                <div class="step-label">Applied</div>
+                            </div>
+                            <div class="progress-line completed"></div>
+                            
+                            <div class="progress-step completed">
+                                <div class="step-icon"><i class="fas fa-check"></i></div>
+                                <div class="step-label">Screening</div>
+                            </div>
+                            <div class="progress-line completed"></div>
+                            
+                            <div class="progress-step active">
+                                <div class="step-icon"><i class="fas fa-spinner fa-spin"></i></div>
+                                <div class="step-label">Interview</div>
+                            </div>
+                            <div class="progress-line"></div>
+                            
+                            <div class="progress-step">
+                                <div class="step-icon">4</div>
+                                <div class="step-label">Offer</div>
+                            </div>
+                            <div class="progress-line"></div>
+                            
+                            <div class="progress-step">
+                                <div class="step-icon">5</div>
+                                <div class="step-label">Visa Process</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="application-item">
+                        <div class="app-header">
+                            <div>
+                                <strong>Product Manager - Amazon</strong>
+                                <span class="app-location"><i class="fas fa-map-marker-alt"></i> Canada</span>
+                            </div>
+                            <span class="app-date">Applied: Dec 10, 2024</span>
+                        </div>
+                        
+                        <div class="progress-tracker">
+                            <div class="progress-step completed">
+                                <div class="step-icon"><i class="fas fa-check"></i></div>
+                                <div class="step-label">Applied</div>
+                            </div>
+                            <div class="progress-line completed"></div>
+                            
+                            <div class="progress-step active">
+                                <div class="step-icon"><i class="fas fa-spinner fa-spin"></i></div>
+                                <div class="step-label">Screening</div>
+                            </div>
+                            <div class="progress-line"></div>
+                            
+                            <div class="progress-step">
+                                <div class="step-icon">3</div>
+                                <div class="step-label">Interview</div>
+                            </div>
+                            <div class="progress-line"></div>
+                            
+                            <div class="progress-step">
+                                <div class="step-icon">4</div>
+                                <div class="step-label">Offer</div>
+                            </div>
+                            <div class="progress-line"></div>
+                            
+                            <div class="progress-step">
+                                <div class="step-icon">5</div>
+                                <div class="step-label">Visa Process</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeLoginModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="switchAuthTab('login')">Login</button>
+                <button class="auth-tab" onclick="switchAuthTab('signup')">Sign Up</button>
+            </div>
+            
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="loginEmail"><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="loginEmail" placeholder="your@email.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="loginPassword"><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-full">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+            </form>
+            
+            <form id="signupForm" style="display: none;" onsubmit="handleSignup(event)">
+                <div class="form-group">
+                    <label for="signupName"><i class="fas fa-user"></i> Full Name</label>
+                    <input type="text" id="signupName" placeholder="John Doe" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="signupEmail"><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="signupEmail" placeholder="your@email.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="signupPassword"><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="signupPassword" placeholder="••••••••" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-full">
+                    <i class="fas fa-user-plus"></i> Create Account
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- AI Chatbot Bubble -->
+<div class="chatbot-bubble" id="chatbotBubble">
+  <i class="fas fa-robot"></i>
+</div>
+
+<!-- Chatbot Window -->
+<div class="chatbot-window" id="chatbotWindow">
+  <div class="chatbot-header-new">
+    <div class="chatbot-header-content">
+      <div class="chatbot-avatar">
+        <i class="fas fa-robot"></i>
+      </div>
+      <div class="chatbot-info">
+        <div class="chatbot-name">Career Assistant</div>
+        <div class="chatbot-status">
+          <span class="status-dot"></span>
+          <span>Online • Ready to help</span>
+        </div>
+      </div>
+    </div>
+
+    <button class="chatbot-close-btn" type="button">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+
+  <div class="chatbot-body">
+    <div class="chatbot-welcome">
+      <div class="welcome-emoji">👋</div>
+      <h3>Hey there!</h3>
+      <p>
+        I'm your Career Assistant! Ask me anything about jobs, hiring, or visas
+      </p>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="chatbot-quick-actions">
+      <button class="quick-action-btn" data-action="hiring" type="button">
+        <i class="fas fa-briefcase"></i>
+        <span>I'm Hiring Talent</span>
+      </button>
+
+      <button class="quick-action-btn" data-action="seeking" type="button">
+        <i class="fas fa-file-alt"></i>
+        <span>I'm Job Seeking</span>
+      </button>
+
+      <button class="quick-action-btn" data-action="visa" type="button">
+        <i class="fas fa-passport"></i>
+        <span>Visa Help</span>
+      </button>
+
+      <button class="quick-action-btn" data-action="demo" type="button">
+        <i class="fas fa-phone"></i>
+        <span>Book Demo</span>
+      </button>
+    </div>
+
+    <!-- Quick Questions -->
+    <div class="chatbot-quick-questions">
+      <h4>Quick Questions:</h4>
+
+      <button class="quick-question" type="button">
+        How quickly can you help me hire skilled professionals?
+      </button>
+
+      <button class="quick-question" type="button">
+        What visa options are available for tech workers?
+      </button>
+
+      <button class="quick-question" type="button">
+        How does the matching process work?
+      </button>
+    </div>
+
+    <!-- Messages -->
+    <div class="chatbot-messages" id="chatbotMessages" style="display: none;">
+      <!-- Messages injected here -->
+    </div>
+  </div>
+
+  <!-- Input Area -->
+  <div class="chatbot-input-area">
+    <input
+      type="text"
+      id="chatInput"
+      placeholder="Type your question here..."
+      autocomplete="off"
+    />
+    <button class="send-btn" type="button">
+      <i class="fas fa-paper-plane"></i>
+    </button>
+  </div>
+</div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
