@@ -463,116 +463,169 @@
   }
   
   /* Map Section */
-  .map-card {
+.map-card {
     padding: 2rem;
   }
   
-  /* Added styles for the enhanced map with numerical indicators */
+  /* Updated world map styles for realistic image-based map */
+  .world-map-container {
+    position: relative;
+    width: 100%;
+    background: rgba(15, 23, 42, 0.5);
+    border-radius: 20px;
+    padding: 2rem;
+    overflow: hidden;
+  }
+  
+  .realistic-world-map {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+  }
+  
+  .map-marker {
+    position: absolute;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    transition: all 0.3s ease;
+    animation: markerBounce 2s infinite;
+  }
+  
+  @keyframes markerBounce {
+    0%,
+    100% {
+      transform: translate(-50%, -50%) translateY(0);
+    }
+    50% {
+      transform: translate(-50%, -50%) translateY(-8px);
+    }
+  }
+  
+  .map-marker:hover {
+    z-index: 20;
+    animation: none;
+    transform: translate(-50%, -50%) scale(1.15);
+  }
+  
+  .marker-pin {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    position: relative;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.6);
+    border: 3px solid white;
+  }
+  
+  .marker-pin::before {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: white;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .marker-pin::after {
+    content: "";
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background: rgba(239, 68, 68, 0.3);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: markerPulse 2s infinite;
+  }
+  
+  @keyframes markerPulse {
+    0% {
+      width: 32px;
+      height: 32px;
+      opacity: 0.8;
+    }
+    100% {
+      width: 60px;
+      height: 60px;
+      opacity: 0;
+    }
+  }
+  
+  .marker-info {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    background: rgba(30, 41, 59, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    white-space: nowrap;
+    margin-top: 0.5rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    transform-origin: center;
+    transform: translateX(-50%);
+  }
+  
+  .marker-country {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+  }
+  
+  .marker-jobs {
+    font-size: 1.125rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
   .map-legend {
     display: flex;
+    gap: 1.5rem;
     justify-content: center;
-    gap: 2rem;
     margin-bottom: 2rem;
     flex-wrap: wrap;
   }
   
-  .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-  }
-  
-  .legend-color {
-    width: 20px;
-    height: 20px;
-    border-radius: 4px;
-  }
-  
-  .legend-color.hot {
-    background: linear-gradient(135deg, #ef4444, #f59e0b);
-  }
-  
-  .legend-color.medium {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-  }
-  
-  .legend-color.cool {
-    background: linear-gradient(135deg, var(--secondary), #10b981);
-  }
-  
-  .world-map-container {
-    position: relative;
-    width: 100%;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 2rem 0;
-  }
-  
-  .world-map {
-    width: 100%;
-    height: auto;
-  }
-  
-  .map-region {
-    fill: rgba(14, 165, 233, 0.15);
-    stroke: rgba(14, 165, 233, 0.3);
-    stroke-width: 1;
-    transition: all 0.3s ease;
-  }
-  
-  .map-region:hover {
-    fill: rgba(14, 165, 233, 0.3);
-    stroke: rgba(6, 182, 212, 0.6);
-    cursor: pointer;
-  }
-  
-  .location-marker {
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .location-marker:hover {
-    transform: scale(1.1);
-  }
-  
-  .marker-pulse {
-    fill: rgba(6, 182, 212, 0.3);
-    animation: pulse 2s infinite;
-  }
-  
-  @keyframes pulse {
-    0%,
-    100% {
-      r: 8;
-      opacity: 0.3;
-    }
-    50% {
-      r: 12;
-      opacity: 0.1;
-    }
-  }
-  
-  .marker-dot {
-    fill: var(--secondary);
-    filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.8));
-  }
-  
-  .marker-label {
-    fill: var(--text-primary);
-    font-size: 11px;
+  .legend-badge {
+    padding: 0.5rem 1.25rem;
+    border-radius: 30px;
+    font-size: 0.875rem;
     font-weight: 600;
-    text-anchor: middle;
-    font-family: inherit;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(30, 41, 59, 0.6);
+    backdrop-filter: blur(10px);
   }
   
-  .marker-count {
-    fill: var(--secondary);
-    font-size: 13px;
-    font-weight: 700;
-    text-anchor: middle;
-    font-family: inherit;
+  .legend-badge.hot {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(220, 38, 38, 0.2));
+    border-color: rgba(239, 68, 68, 0.4);
+    color: #fca5a5;
+  }
+  
+  .legend-badge.medium {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(37, 99, 235, 0.2));
+    border-color: rgba(59, 130, 246, 0.4);
+    color: #93c5fd;
+  }
+  
+  .legend-badge.cool {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(8, 145, 178, 0.2));
+    border-color: rgba(6, 182, 212, 0.4);
+    color: #67e8f9;
   }
   
   .location-details {
@@ -585,7 +638,7 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 20px;
     padding: 2rem;
-    min-width: 350px;
+    min-width: 380px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
     transition: all 0.3s ease;
     z-index: 100;
@@ -629,23 +682,26 @@
     display: flex;
     align-items: flex-start;
     gap: 1rem;
-    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(15, 23, 42, 0.5);
+    border-radius: 12px;
+    margin-bottom: 0.75rem;
   }
   
   .detail-row i {
     color: var(--secondary);
-    font-size: 1.2rem;
-    margin-top: 0.2rem;
+    font-size: 1.25rem;
+    margin-top: 0.25rem;
   }
   
   .detail-label {
-    font-size: 0.85rem;
+    font-size: 0.875rem;
     color: var(--text-secondary);
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.25rem;
   }
   
   .detail-value {
-    font-size: 1.1rem;
+    font-size: 1.125rem;
     font-weight: 600;
     color: var(--text-primary);
   }
@@ -714,6 +770,7 @@
   .destination-trend.up {
     color: var(--success);
   }
+  
   
   /* Resources Section */
   .resources-grid {
@@ -1537,3 +1594,165 @@
     }
   }
   
+
+  /* Added responsive styles for mobile phones */
+@media (max-width: 768px) {
+  /* Make map markers smaller and more visible on mobile */
+  .map-marker {
+    animation: markerBounce 3s infinite;
+    
+  }
+
+  .marker-pin {
+    width: 24px;
+    height: 24px;
+    border: 2px solid white;
+  }
+
+  .marker-pin::before {
+    width: 10px;
+    height: 10px;
+  }
+
+  .marker-pin::after {
+    width: 24px;
+    height: 24px;
+  }
+
+  @keyframes markerPulse {
+    0% {
+      width: 24px;
+      height: 24px;
+      opacity: 0.8;
+    }
+    100% {
+      width: 45px;
+      height: 45px;
+      opacity: 0;
+    }
+  }
+
+  .marker-info {
+    padding: 0.4rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+  }
+
+  .marker-country {
+    font-size: 0.75rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .marker-jobs {
+    font-size: 0.95rem;
+  }
+
+  /* Make location details responsive */
+  .location-details {
+    min-width: 90vw;
+    max-width: 90vw;
+    padding: 1.5rem;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  .location-details h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    padding-right: 2rem;
+  }
+
+  .detail-row {
+    padding: 0.75rem;
+  }
+
+  .detail-row i {
+    font-size: 1rem;
+  }
+
+  .detail-label {
+    font-size: 0.8rem;
+  }
+
+  .detail-value {
+    font-size: 1rem;
+  }
+
+  /* Adjust map legend for mobile */
+  .map-legend {
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .legend-badge {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.75rem;
+  }
+
+  /* Make world map container more responsive */
+  .world-map-container {
+    padding: 1rem;
+  }
+
+  .realistic-world-map {
+    border-radius: 8px;
+  }
+
+  /* Top destinations responsive */
+  .destination-item {
+    padding: 0.75rem 1rem;
+    gap: 0.75rem;
+  }
+
+  .destination-flag {
+    font-size: 1.5rem;
+  }
+
+  .destination-info strong {
+    font-size: 0.9rem;
+  }
+
+  .destination-info span {
+    font-size: 0.8rem;
+  }
+
+  .destination-trend {
+    font-size: 0.8rem;
+  }
+}
+
+/* Extra small screens (phones in portrait) */
+@media (max-width: 480px) {
+  .marker-pin {
+    width: 20px;
+    height: 20px;
+  }
+
+  .marker-pin::before {
+    width: 8px;
+    height: 8px;
+  }
+
+  .marker-info {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.7rem;
+  }
+
+  .marker-country {
+    font-size: 0.7rem;
+  }
+
+  .marker-jobs {
+    font-size: 0.85rem;
+  }
+
+  .location-details {
+    padding: 1rem;
+  }
+
+  .close-details {
+    width: 28px;
+    height: 28px;
+    font-size: 0.9rem;
+  }
+}

@@ -75,9 +75,10 @@
     </section>
 
     
-    <!-- Eligibility Section 
+    <!-- Eligibility Section-->
     <section class="section" id="eligibility">
         <div class="container">
+            
             <div class="section-header">
                 <h2 class="section-title">Visa Eligibility Checker</h2>
                 <p class="section-subtitle">Discover your best visa pathways with AI-powered analysis</p>
@@ -123,231 +124,196 @@
         </div>
     </section>
 
-    <!-- Opportunities Section 
-    <section class="section" id="opportunities">
-        <div class="container">
+    <!-- Opportunities Tab Overlay -->
+    <div class="tab-overlay" id="tab-opportunities">
+        <div class="tab-content">
+            
             <div class="section-header">
-                <h2 class="section-title">Global Opportunity Map</h2>
-                <p class="section-subtitle">Explore AI-recommended opportunities across the globe</p>
+                <h2><i class="fas fa-globe"></i> Global Opportunity Map</h2>
+                <p>Explore recommended opportunities across the globe</p>
             </div>
             
-            <div class="floating-card map-card">
-                <!-- Updated to include detailed map with numerical indicators 
-                <div class="map-legend">
-                    <div class="legend-item">
-                        <div class="legend-color hot"></div>
-                        <span>2000+ Opportunities</span>
+            <div class="tab-body">
+                <div class="floating-card map-card">
+                    <!-- Replaced SVG map with realistic world map image -->
+                    <div class="map-legend">
+                        <div class="legend-item">
+                            <span class="legend-badge hot">3000+ Jobs</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-badge medium">1000-3000 Jobs</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-badge cool">500-1000 Jobs</span>
+                        </div>
                     </div>
-                    <div class="legend-item">
-                        <div class="legend-color medium"></div>
-                        <span>500-2000 Opportunities</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color cool"></div>
-                        <span>100-500 Opportunities</span>
-                    </div>
-                </div>
-                
-                <div class="world-map-container">
-                    <svg viewBox="0 0 1000 500" class="world-map" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Simplified world map paths -->
-                        <!-- North America 
-                        <path d="M 120 80 L 140 70 L 160 75 L 180 80 L 200 90 L 220 100 L 230 120 L 240 140 L 245 160 L 240 180 L 230 190 L 220 195 L 200 200 L 180 195 L 160 190 L 140 185 L 130 180 L 120 170 L 110 150 L 105 130 L 108 110 L 115 90 Z" 
-                              class="map-region" data-region="North America" />
-                        
-                        <!-- Europe 
-                        <path d="M 480 100 L 500 95 L 520 100 L 535 110 L 545 120 L 550 135 L 545 150 L 535 160 L 520 165 L 500 160 L 485 155 L 475 145 L 470 130 L 472 115 Z" 
-                              class="map-region" data-region="Europe" />
-                        
-                        <!-- Asia 
-                        <path d="M 600 120 L 650 110 L 700 115 L 750 125 L 780 140 L 800 160 L 810 180 L 805 200 L 790 215 L 770 225 L 740 230 L 710 225 L 680 215 L 650 200 L 625 185 L 605 165 L 595 145 Z" 
-                              class="map-region" data-region="Asia" />
-                        
-                        <!-- Australia 
-                        <path d="M 750 330 L 780 325 L 810 330 L 830 345 L 840 365 L 835 385 L 820 395 L 795 400 L 770 395 L 750 385 L 740 370 L 745 350 Z" 
-                              class="map-region" data-region="Australia" />
-                        
-                        <!-- South America 
-                        <path d="M 280 250 L 300 245 L 320 255 L 330 275 L 335 300 L 330 330 L 320 360 L 305 385 L 285 395 L 270 390 L 260 375 L 255 350 L 258 320 L 265 290 L 272 270 Z" 
-                              class="map-region" data-region="South America" />
-                        
-                        <!-- Africa 
-                        <path d="M 450 200 L 480 195 L 510 205 L 530 225 L 540 250 L 545 280 L 540 310 L 525 335 L 505 350 L 480 355 L 460 350 L 445 335 L 435 310 L 432 280 L 437 250 L 445 225 Z" 
-                              class="map-region" data-region="Africa" />
-                        
-                        <!-- Location markers with numerical values -->
-                        <!-- United States 
-                        <g class="location-marker" data-country="United States" data-jobs="3,245" data-top-visa="H-1B" onclick="showLocationDetails(this)">
-                            <circle cx="180" cy="120" r="8" class="marker-pulse"/>
-                            <circle cx="180" cy="120" r="6" class="marker-dot"/>
-                            <text x="180" y="105" class="marker-label">USA</text>
-                            <text x="180" y="140" class="marker-count">3,245</text>
-                        </g>
-                        
-                        <!-- Canada 
-                        <g class="location-marker" data-country="Canada" data-jobs="2,189" data-top-visa="Express Entry" onclick="showLocationDetails(this)">
-                            <circle cx="150" cy="90" r="8" class="marker-pulse"/>
-                            <circle cx="150" cy="90" r="6" class="marker-dot"/>
-                            <text x="150" y="75" class="marker-label">Canada</text>
-                            <text x="150" y="110" class="marker-count">2,189</text>
-                        </g>
-                        
-                        <!-- United Kingdom 
-                        <g class="location-marker" data-country="United Kingdom" data-jobs="1,876" data-top-visa="Skilled Worker" onclick="showLocationDetails(this)">
-                            <circle cx="490" cy="115" r="7" class="marker-pulse"/>
-                            <circle cx="490" cy="115" r="5" class="marker-dot"/>
-                            <text x="490" y="102" class="marker-label">UK</text>
-                            <text x="490" y="132" class="marker-count">1,876</text>
-                        </g>
-                        
-                        <!-- Germany 
-                        <g class="location-marker" data-country="Germany" data-jobs="2,034" data-top-visa="EU Blue Card" onclick="showLocationDetails(this)">
-                            <circle cx="510" cy="125" r="7" class="marker-pulse"/>
-                            <circle cx="510" cy="125" r="5" class="marker-dot"/>
-                            <text x="510" y="110" class="marker-label">Germany</text>
-                            <text x="510" y="142" class="marker-count">2,034</text>
-                        </g>
-                        
-                        <!-- Australia 
-                        <g class="location-marker" data-country="Australia" data-jobs="1,542" data-top-visa="Skilled Independent" onclick="showLocationDetails(this)">
-                            <circle cx="790" cy="365" r="8" class="marker-pulse"/>
-                            <circle cx="790" cy="365" r="6" class="marker-dot"/>
-                            <text x="790" y="350" class="marker-label">Australia</text>
-                            <text x="790" y="385" class="marker-count">1,542</text>
-                        </g>
-                        
-                        <!-- Singapore 
-                        <g class="location-marker" data-country="Singapore" data-jobs="987" data-top-visa="Employment Pass" onclick="showLocationDetails(this)">
-                            <circle cx="720" cy="240" r="6" class="marker-pulse"/>
-                            <circle cx="720" cy="240" r="4" class="marker-dot"/>
-                            <text x="720" y="227" class="marker-label">Singapore</text>
-                            <text x="720" y="257" class="marker-count">987</text>
-                        </g>
-                        
-                        <!-- UAE 
-                        <g class="location-marker" data-country="UAE (Dubai)" data-jobs="1,234" data-top-visa="Work Permit" onclick="showLocationDetails(this)">
-                            <circle cx="580" cy="200" r="7" class="marker-pulse"/>
-                            <circle cx="580" cy="200" r="5" class="marker-dot"/>
-                            <text x="580" y="185" class="marker-label">UAE</text>
-                            <text x="580" y="217" class="marker-count">1,234</text>
-                        </g>
-                        
-                        <!-- Japan 
-                        <g class="location-marker" data-country="Japan" data-jobs="876" data-top-visa="Skilled Worker" onclick="showLocationDetails(this)">
-                            <circle cx="820" cy="150" r="6" class="marker-pulse"/>
-                            <circle cx="820" cy="150" r="4" class="marker-dot"/>
-                            <text x="820" y="137" class="marker-label">Japan</text>
-                            <text x="820" y="167" class="marker-count">876</text>
-                        </g>
-                        
-                        <!-- New Zealand 
-                        <g class="location-marker" data-country="New Zealand" data-jobs="654" data-top-visa="Skilled Migrant" onclick="showLocationDetails(this)">
-                            <circle cx="860" cy="390" r="5" class="marker-pulse"/>
-                            <circle cx="860" cy="390" r="3" class="marker-dot"/>
-                            <text x="860" y="377" class="marker-label">NZ</text>
-                            <text x="860" y="407" class="marker-count">654</text>
-                        </g>
-                        
-                        <!-- Netherlands 
-                        <g class="location-marker" data-country="Netherlands" data-jobs="789" data-top-visa="Highly Skilled Migrant" onclick="showLocationDetails(this)">
-                            <circle cx="500" cy="120" r="6" class="marker-pulse"/>
-                            <circle cx="500" cy="120" r="4" class="marker-dot"/>
-                            <text x="500" y="107" class="marker-label">Netherlands</text>
-                            <text x="500" y="137" class="marker-count">789</text>
-                        </g>
-                        
-                        <!-- Sweden 
-                        <g class="location-marker" data-country="Sweden" data-jobs="543" data-top-visa="Work Permit" onclick="showLocationDetails(this)">
-                            <circle cx="520" cy="100" r="5" class="marker-pulse"/>
-                            <circle cx="520" cy="100" r="3" class="marker-dot"/>
-                            <text x="520" y="87" class="marker-label">Sweden</text>
-                            <text x="520" y="117" class="marker-count">543</text>
-                        </g>
-                    </svg>
                     
-                    <!-- Location details popup 
-                    <div class="location-details" id="locationDetails">
-                        <button class="close-details" onclick="closeLocationDetails()">
-                            <i class="fas fa-times"></i>
-                        </button>
-                        <h3 id="locationName"></h3>
-                        <div class="detail-row">
-                            <i class="fas fa-briefcase"></i>
-                            <div>
-                                <div class="detail-label">Available Positions</div>
-                                <div class="detail-value" id="locationJobs"></div>
+                    <div class="world-map-container">
+                        <img src="Assets/globe.jpg" 
+                             alt="World Map" 
+                             class="realistic-world-map">
+                        
+                        <!-- Location markers with numerical values positioned over the map -->
+                        <div class="map-marker" style="top: 28%; left: 15%;" 
+                             data-country="United States" 
+                             data-jobs="3,245" 
+                             data-top-visa="H-1B Visa"
+                             data-salary="$85,000 - $150,000"
+                             data-demand="High"
+                             onclick="showLocationDetails(this)">
+                            <div class="marker-pin"></div>
+                            <div class="marker-info">
+                                <div class="marker-country">USA</div>
+                                <div class="marker-jobs">3,245</div>
                             </div>
                         </div>
-                        <div class="detail-row">
-                            <i class="fas fa-passport"></i>
-                            <div>
-                                <div class="detail-label">Popular Visa Type</div>
-                                <div class="detail-value" id="locationVisa"></div>
+                        
+                        <div class="map-marker" style="top: 18%; left: 12%;" 
+                             data-country="Canada" 
+                             data-jobs="2,189" 
+                             data-top-visa="Express Entry"
+                             data-salary="$70,000 - $120,000"
+                             data-demand="Very High"
+                             onclick="showLocationDetails(this)">
+                            <div class="marker-pin"></div>
+                            <div class="marker-info">
+                                <div class="marker-country">Canada</div>
+                                <div class="marker-jobs">2,189</div>
                             </div>
                         </div>
-                        <div class="detail-row">
-                            <i class="fas fa-chart-line"></i>
-                            <div>
-                                <div class="detail-label">Match Rate</div>
-                                <div class="detail-value" id="locationMatch"></div>
+                        
+                        <div class="map-marker" style="top: 22%; left: 47%;" 
+                             data-country="United Kingdom" 
+                             data-jobs="1,876" 
+                             data-top-visa="Skilled Worker Visa"
+                             data-salary="£45,000 - £80,000"
+                             data-demand="High"
+                             onclick="showLocationDetails(this)">
+                            <div class="marker-pin"></div>
+                            <div class="marker-info">
+                                <div class="marker-country">UK</div>
+                                <div class="marker-jobs">1,876</div>
                             </div>
                         </div>
-                        <button class="btn btn-primary btn-small" onclick="applyToLocation()">
-                            <i class="fas fa-paper-plane"></i> Apply Now
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Top destinations showcase 
-                <div class="top-destinations">
-                    <h3>Top Destinations This Month</h3>
-                    <div class="destination-grid">
-                        <div class="destination-item">
-                            <div class="destination-flag">🇺🇸</div>
-                            <div class="destination-info">
-                                <strong>United States</strong>
-                                <span>3,245 jobs</span>
-                            </div>
-                            <div class="destination-trend up">
-                                <i class="fas fa-arrow-up"></i> 15%
+                        
+                        <div class="map-marker" style="top: 24%; left: 50.5%;" 
+                             data-country="Germany" 
+                             data-jobs="2,034" 
+                             data-top-visa="EU Blue Card"
+                             data-salary="€55,000 - €95,000"
+                             data-demand="Very High"
+                             onclick="showLocationDetails(this)">
+                            <div class="marker-pin"></div>
+                            <div class="marker-info">
+                                <div class="marker-country">Germany</div>
+                                <div class="marker-jobs">2,034</div>
                             </div>
                         </div>
-                        <div class="destination-item">
-                            <div class="destination-flag">🇨🇦</div>
-                            <div class="destination-info">
-                                <strong>Canada</strong>
-                                <span>2,189 jobs</span>
-                            </div>
-                            <div class="destination-trend up">
-                                <i class="fas fa-arrow-up"></i> 22%
-                            </div>
-                        </div>
-                        <div class="destination-item">
-                            <div class="destination-flag">🇩🇪</div>
-                            <div class="destination-info">
-                                <strong>Germany</strong>
-                                <span>2,034 jobs</span>
-                            </div>
-                            <div class="destination-trend up">
-                                <i class="fas fa-arrow-up"></i> 18%
+                        
+                        <div class="map-marker" style="top: 40%; left: 53%;" 
+                             data-country="UAE (Dubai)" 
+                             data-jobs="1,234" 
+                             data-top-visa="Work Permit"
+                             data-salary="AED 180,000 - AED 350,000"
+                             data-demand="High"
+                             onclick="showLocationDetails(this)">
+                            <div class="marker-pin"></div>
+                            <div class="marker-info">
+                                <div class="marker-country">UAE</div>
+                                <div class="marker-jobs">1,234</div>
                             </div>
                         </div>
-                        <div class="destination-item">
-                            <div class="destination-flag">🇬🇧</div>
-                            <div class="destination-info">
-                                <strong>United Kingdom</strong>
-                                <span>1,876 jobs</span>
+                        
+                        <div class="map-marker" style="top: 52%; left: 72%;" 
+                             data-country="Singapore" 
+                             data-jobs="987" 
+                             data-top-visa="Employment Pass"
+                             data-salary="S$80,000 - S$140,000"
+                             data-demand="Medium"
+                             onclick="showLocationDetails(this)">
+                            <div class="marker-pin"></div>
+                            <div class="marker-info">
+                                <div class="marker-country">Singapore</div>
+                                <div class="marker-jobs">987</div>
                             </div>
-                            <div class="destination-trend up">
-                                <i class="fas fa-arrow-up"></i> 12%
+                        </div>
+                        
+                        <div class="map-marker" style="top: 70%; left: 85%;" 
+                             data-country="Australia" 
+                             data-jobs="1,542" 
+                             data-top-visa="Skilled Independent 189"
+                             data-salary="AU$75,000 - AU$130,000"
+                             data-demand="High"
+                             onclick="showLocationDetails(this)">
+                            <div class="marker-pin"></div>
+                            <div class="marker-info">
+                                <div class="marker-country">Australia</div>
+                                <div class="marker-jobs">1,542</div>
                             </div>
+                        </div>
+                        
+                        <div class="map-marker" style="top: 78%; left: 92%;" 
+                             data-country="New Zealand" 
+                             data-jobs="756" 
+                             data-top-visa="Skilled Migrant Visa"
+                             data-salary="NZ$65,000 - NZ$110,000"
+                             data-demand="Medium"
+                             onclick="showLocationDetails(this)">
+                            <div class="marker-pin"></div>
+                            <div class="marker-info">
+                                <div class="marker-country">New Zealand</div>
+                                <div class="marker-jobs">756</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Location Details Popup -->
+                        <div class="location-details" id="locationDetails">
+                            <button class="close-details" onclick="closeLocationDetails()">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <h3 id="locationName"></h3>
+                            
+                            <div class="detail-row">
+                                <i class="fas fa-briefcase"></i>
+                                <div>
+                                    <div class="detail-label">Available Jobs</div>
+                                    <div class="detail-value" id="locationJobs"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="detail-row">
+                                <i class="fas fa-passport"></i>
+                                <div>
+                                    <div class="detail-label">Top Visa Category</div>
+                                    <div class="detail-value" id="locationVisa"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="detail-row">
+                                <i class="fas fa-chart-line"></i>
+                                <div>
+                                    <div class="detail-label">Demand Level</div>
+                                    <div class="detail-value" id="locationDemand"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="detail-row">
+                                <i class="fas fa-dollar-sign"></i>
+                                <div>
+                                    <div class="detail-label">Salary Range</div>
+                                    <div class="detail-value" id="locationSalary"></div>
+                                </div>
+                            </div>
+                            
+                            <button class="primary-btn" style="width: 100%; margin-top: 1.5rem;">
+                                View Opportunities
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
+    </div>
     <!-- Employers Section 
     <section class="section" id="employers">
         <div class="container">
