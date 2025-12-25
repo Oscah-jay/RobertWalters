@@ -19,11 +19,11 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home" class="nav-link" onclick="scrollToSection('home')">Home</a></li>
                 <li><a href="#eligibility" class="nav-link" onclick="scrollToSection('eligibility')">Eligibility</a></li>
-                <li><a href="#opportunities" class="nav-link" onclick="scrollToSection('opportunities')">Opportunities</a></li>
-                <li><a href="#employers" class="nav-link" onclick="scrollToSection('employers')">Employers</a></li>
+                <li><a href="#tab-opportunities" class="nav-link" onclick="scrollToSection('opportunities')">Opportunities</a></li>
+                <li><a href="#tab-employers" class="nav-link" onclick="scrollToSection('employers')">Employers</a></li>
                 <li><a href="#resources" class="nav-link" onclick="scrollToSection('resources')">Resources</a></li>
                 <li><a href="#dashboard" class="dashboard-btn"><i class="fas fa-chart-line"></i> Dashboard</a></li>
-                <li><button class="login-btn" id="loginBtn"><i class="fas fa-user"></i> Login / Sign Up</button></li>
+                <li><a href="auth.html" class="login-btn"><i class="fas fa-user"></i> Login / Sign Up</a></li>
             </ul>
             
             <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -224,19 +224,7 @@
                             </div>
                         </div>
                         
-                        <div class="map-marker" style="top: 52%; left: 72%;" 
-                             data-country="Singapore" 
-                             data-jobs="987" 
-                             data-top-visa="Employment Pass"
-                             data-salary="S$80,000 - S$140,000"
-                             data-demand="Medium"
-                             onclick="showLocationDetails(this)">
-                            <div class="marker-pin"></div>
-                            <div class="marker-info">
-                                <div class="marker-country">Singapore</div>
-                                <div class="marker-jobs">987</div>
-                            </div>
-                        </div>
+                        
                         
                         <div class="map-marker" style="top: 70%; left: 85%;" 
                              data-country="Australia" 
@@ -252,19 +240,7 @@
                             </div>
                         </div>
                         
-                        <div class="map-marker" style="top: 78%; left: 92%;" 
-                             data-country="New Zealand" 
-                             data-jobs="756" 
-                             data-top-visa="Skilled Migrant Visa"
-                             data-salary="NZ$65,000 - NZ$110,000"
-                             data-demand="Medium"
-                             onclick="showLocationDetails(this)">
-                            <div class="marker-pin"></div>
-                            <div class="marker-info">
-                                <div class="marker-country">New Zealand</div>
-                                <div class="marker-jobs">756</div>
-                            </div>
-                        </div>
+                       
                         
                         <!-- Location Details Popup -->
                         <div class="location-details" id="locationDetails">
@@ -314,74 +290,101 @@
             </div>
         </div>
     </div>
-    <!-- Employers Section 
-    <section class="section" id="employers">
-        <div class="container">
+
+
+     <!-- Employers Tab Overlay -->
+     <div class="tab-overlay" id="tab-employers">
+        <div class="tab-content">
+           
             <div class="section-header">
-                <h2 class="section-title">Connect with Employers</h2>
-                <p class="section-subtitle">Let AI match you with top international recruiters</p>
+                <h2><i class="fas fa-handshake"></i> International Employers</h2>
+                <p>Browse verified sponsors and contact recruiters directly</p>
             </div>
             
-            <div class="floating-card employer-card">
-                <div class="card-icon">
-                    <i class="fas fa-handshake"></i>
+            <div class="tab-body">
+                <!-- Updated Employers UI to match the requested design with company header and job cards -->
+                <div class="company-profile">
+                    <div class="company-header">
+                        <div class="company-logo">NG</div>
+                        <div class="company-info">
+                            <h3>NexGen Tech Solutions</h3>
+                            <span class="sponsor-badge"><i class="fas fa-circle"></i> Verified Tier-2 Sponsor (UK)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="jobs-grid">
+                        <div class="job-card">
+                            <div class="job-details">
+                                <h4>Senior Backend Engineer</h4>
+                                <p>London, UK • Full Relocation</p>
+                            </div>
+                            <button class="btn btn-primary btn-full" onclick="openRecruiterForm('Senior Backend Engineer', 'NexGen Tech Solutions')">
+                                Contact Recruiter
+                            </button>
+                        </div>
+                        
+                        <div class="job-card">
+                            <div class="job-details">
+                                <h4>DevOps Lead</h4>
+                                <p>Berlin, Germany • Blue Card Route</p>
+                            </div>
+                            <button class="btn btn-primary btn-full" onclick="openRecruiterForm('DevOps Lead', 'NexGen Tech Solutions')">
+                                Contact Recruiter
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                
-                <form id="employerForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="fullName"><i class="fas fa-user"></i> Full Name</label>
-                            <input type="text" id="fullName" placeholder="John Doe" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email"><i class="fas fa-envelope"></i> Email</label>
-                            <input type="email" id="email" placeholder="john@example.com" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
-                            <input type="tel" id="phone" placeholder="+1 234 567 8900" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="targetCountry"><i class="fas fa-globe"></i> Target Country</label>
-                            <select id="targetCountry" required>
-                                <option value="">Select country</option>
-                                <option value="usa">United States</option>
-                                <option value="canada">Canada</option>
-                                <option value="australia">Australia</option>
-                                <option value="uk">United Kingdom</option>
-                                <option value="germany">Germany</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="resume"><i class="fas fa-file-alt"></i> Resume / CV</label>
-                        <label for="resume" class="file-upload" id="fileLabel">
-                            <i class="fas fa-cloud-upload-alt"></i> Upload Resume (PDF, DOC)
-                        </label>
-                        <input type="file" id="resume" accept=".pdf,.doc,.docx" required style="display: none;">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message"><i class="fas fa-comment-alt"></i> Additional Information (Optional)</label>
-                        <textarea id="message" rows="4" placeholder="Tell us about your career goals and preferences..."></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary btn-full">
-                        <i class="fas fa-paper-plane"></i> Submit Application
-                    </button>
-                </form>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Resources Section 
+     <!-- Recruiter Contact Modal -->
+     <div class="modal-overlay" id="recruiterModal">
+        <div class="modal-content floating-card">
+            <button class="modal-close" onclick="closeRecruiterModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="card-icon">
+                <i class="fas fa-user-tie"></i>
+            </div>
+            <h3 id="modalJobTitle" style="text-align: center; margin-bottom: 0.5rem;">Contact Recruiter</h3>
+            <p id="modalCompany" style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">NexGen Tech Solutions</p>
+            
+            <form id="employerForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fullName"><i class="fas fa-user"></i> Full Name</label>
+                        <input type="text" id="fullName" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="email" required placeholder="john@example.com">
+                    </div>
+                </div>
+                
+                <!-- CHANGE START -->
+                <div class="form-group">
+                    <label for="coverLetter"><i class="fas fa-pen-nib"></i> Message / Cover Letter</label>
+                    <textarea id="coverLetter" rows="5" placeholder="Write a short message or paste your cover letter here..." required></textarea>
+                </div>
+                <!-- CHANGE END -->
+                
+                <div class="form-group">
+                    <label><i class="fas fa-file-alt"></i> Resume</label>
+                    <label for="resume" class="file-upload" id="fileLabel">
+                        <i class="fas fa-cloud-upload-alt"></i> Upload Resume (PDF, DOC)
+                        <input type="file" id="resume" accept=".pdf,.doc,.docx" required style="display: none;">
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-full">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Resources Section
     <section class="section" id="resources">
         <div class="container">
             <div class="section-header">
@@ -600,7 +603,7 @@
         </div>
     </section>
 
-    <!-- Login Modal -->
+    <!-- Login Modal 
     <div class="modal" id="loginModal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeLoginModal()">
@@ -651,100 +654,88 @@
         </div>
     </div>
 
-    <!-- AI Chatbot Bubble -->
-<div class="chatbot-bubble" id="chatbotBubble">
-  <i class="fas fa-robot"></i>
+   <!-- AI Chatbot -->
+   <div class="chatbot-bubble" id="chatbotBubble" onclick="toggleChatbot()">
+    <i class="fas fa-robot"></i>
 </div>
 
-<!-- Chatbot Window -->
+<!-- Completely redesigned chatbot window to match Roo design -->
 <div class="chatbot-window" id="chatbotWindow">
-  <div class="chatbot-header-new">
-    <div class="chatbot-header-content">
-      <div class="chatbot-avatar">
-        <i class="fas fa-robot"></i>
-      </div>
-      <div class="chatbot-info">
-        <div class="chatbot-name">Career Assistant</div>
-        <div class="chatbot-status">
-          <span class="status-dot"></span>
-          <span>Online • Ready to help</span>
+    <div class="chatbot-header-new">
+        <div class="chatbot-header-content">
+            <div class="chatbot-avatar">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="chatbot-info">
+                <div class="chatbot-name">Career Assistant</div>
+                <div class="chatbot-status">
+                    <span class="status-dot"></span>
+                    <span>Online • Ready to help</span>
+                </div>
+            </div>
         </div>
-      </div>
+        <button onclick="toggleChatbot()" class="chatbot-close-btn">
+            <i class="fas fa-times"></i>
+        </button>
     </div>
+    
+    <div class="chatbot-body">
+        <div class="chatbot-welcome">
+            <div class="welcome-emoji">👋</div>
+            <h3>Hey there!</h3>
+            <p>I'm your Career Assistant! Ask me anything about jobs, hiring, or visas</p>
+        </div>
 
-    <button class="chatbot-close-btn" type="button">
-      <i class="fas fa-times"></i>
-    </button>
-  </div>
+        <div class="chatbot-quick-actions">
+            <button class="quick-action-btn" onclick="handleQuickAction('hiring')">
+                <i class="fas fa-briefcase"></i>
+                <span>I'm Hiring Talent</span>
+            </button>
+            <button class="quick-action-btn" onclick="handleQuickAction('seeking')">
+                <i class="fas fa-file-alt"></i>
+                <span>I'm Job Seeking</span>
+            </button>
+            <button class="quick-action-btn" onclick="handleQuickAction('visa')">
+                <i class="fas fa-passport"></i>
+                <span>Visa Help</span>
+            </button>
+            <button class="quick-action-btn" onclick="handleQuickAction('demo')">
+                <i class="fas fa-phone"></i>
+                <span>Book Demo</span>
+            </button>
+        </div>
 
-  <div class="chatbot-body">
-    <div class="chatbot-welcome">
-      <div class="welcome-emoji">👋</div>
-      <h3>Hey there!</h3>
-      <p>
-        I'm your Career Assistant! Ask me anything about jobs, hiring, or visas
-      </p>
+        <div class="chatbot-quick-questions">
+            <h4>Quick Questions:</h4>
+            <button class="quick-question" onclick="askQuickQuestion(this)">
+                How quickly can you help me hire skilled professionals?
+            </button>
+            <button class="quick-question" onclick="askQuickQuestion(this)">
+                What visa options are available for tech workers?
+            </button>
+            <button class="quick-question" onclick="askQuickQuestion(this)">
+                How does the matching process work?
+            </button>
+        </div>
+
+        <div class="chatbot-messages" id="chatbotMessages" style="display: none;">
+            <!-- Messages will appear here after interaction -->
+        </div>
     </div>
-
-    <!-- Quick Actions -->
-    <div class="chatbot-quick-actions">
-      <button class="quick-action-btn" data-action="hiring" type="button">
-        <i class="fas fa-briefcase"></i>
-        <span>I'm Hiring Talent</span>
-      </button>
-
-      <button class="quick-action-btn" data-action="seeking" type="button">
-        <i class="fas fa-file-alt"></i>
-        <span>I'm Job Seeking</span>
-      </button>
-
-      <button class="quick-action-btn" data-action="visa" type="button">
-        <i class="fas fa-passport"></i>
-        <span>Visa Help</span>
-      </button>
-
-      <button class="quick-action-btn" data-action="demo" type="button">
-        <i class="fas fa-phone"></i>
-        <span>Book Demo</span>
-      </button>
+    
+    <div class="chatbot-input-area">
+        <input 
+            type="text" 
+            id="chatInput" 
+            placeholder="Type your question here..." 
+            onkeypress="handleChatKeypress(event)"
+        >
+        <button onclick="sendMessage()" class="send-btn">
+            <i class="fas fa-paper-plane"></i>
+        </button>
     </div>
-
-    <!-- Quick Questions -->
-    <div class="chatbot-quick-questions">
-      <h4>Quick Questions:</h4>
-
-      <button class="quick-question" type="button">
-        How quickly can you help me hire skilled professionals?
-      </button>
-
-      <button class="quick-question" type="button">
-        What visa options are available for tech workers?
-      </button>
-
-      <button class="quick-question" type="button">
-        How does the matching process work?
-      </button>
-    </div>
-
-    <!-- Messages -->
-    <div class="chatbot-messages" id="chatbotMessages" style="display: none;">
-      <!-- Messages injected here -->
-    </div>
-  </div>
-
-  <!-- Input Area -->
-  <div class="chatbot-input-area">
-    <input
-      type="text"
-      id="chatInput"
-      placeholder="Type your question here..."
-      autocomplete="off"
-    />
-    <button class="send-btn" type="button">
-      <i class="fas fa-paper-plane"></i>
-    </button>
-  </div>
 </div>
+
 
     <script src="scripts.js"></script>
 </body>

@@ -163,7 +163,8 @@ employerForm.addEventListener("submit", (e) => {
       fileLabel.style.color = ""
       submitButton.innerHTML = originalText
       submitButton.disabled = false
-      alert("Your application has been submitted successfully! Our AI will match you with suitable employers.")
+      alert("Your application has been submitted successfully! The recruiter will contact you soon.")
+      closeRecruiterModal()
     }, 2000)
   }, 2000)
 })
@@ -488,6 +489,23 @@ document.querySelectorAll(".tab-overlay").forEach((overlay) => {
     }
   })
 })
+
+function openRecruiterForm(jobTitle, company) {
+  const modal = document.getElementById("recruiterModal")
+  document.getElementById("modalJobTitle").textContent = jobTitle
+  document.getElementById("modalCompany").textContent = company
+  modal.classList.add("show")
+  document.body.style.overflow = "hidden"
+}
+
+function closeRecruiterModal() {
+  const modal = document.getElementById("recruiterModal")
+  modal.classList.remove("show")
+  // Only restore overflow if no other tab is active
+  if (!document.querySelector(".tab-overlay.active")) {
+    document.body.style.overflow = ""
+  }
+}
 
 // Initialize
 document.addEventListener("DOMContentLoaded", () => {
