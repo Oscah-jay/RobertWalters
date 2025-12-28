@@ -405,29 +405,19 @@ function initChatbot() {
 
       addChatMessage(message, "user")
 
-      setTimeout(() => {
-        let response = ""
-        switch (action) {
-          case "hiring":
-            response = "Great! I can help you find the perfect talent. What positions are you looking to fill?"
-            break
-          case "seeking":
-            response = "Excellent! I'll help you find international opportunities. What's your current profession?"
-            break
-          case "visa":
-            response = "I'd be happy to help with visa information! Which country are you interested in?"
-            break
-          case "demo":
-            response = "Perfect! What's the best email to reach you at for a personalized demo?"
-            break
-        }
-        addChatMessage(response, "bot")
-      }, 800)
+      setTimeout(async () => {
+        const reply = await getBotReply(message)
+        addChatMessage(reply, "bot")
+      }, 500)
     }
   }
 }
 
-
+function handleChatKeypress(event) {
+  if (event.key === "Enter") {
+    sendMessage()
+  }
+}
 
 
 function handleQuickQuestion(button) {
@@ -449,41 +439,30 @@ function handleQuickQuestion(button) {
   addChatMessage(question, "user")
 
   // Add bot response
-  setTimeout(() => {
-    const responses = {
-      "How quickly can you help me hire skilled professionals?":
-        "We can typically match you with qualified candidates within 48-72 hours! Would you like to start the process?",
-      "What visa options are available for tech workers?":
-        "Tech workers have several great options including H-1B (USA) and EU Blue Card (Germany). Want to check your eligibility?",
-      "How does the matching process work?":
-        "Our AI analyzes your skills and matches you with opportunities across 50+ countries. Want to get started?",
-    }
-
-    const response = responses[question] || "That's a great question! Let me help you with that..."
-    addChatMessage(response, "bot")
-  }, 1000)
+  setTimeout(async () => {
+    const reply = await getBotReply(question)
+    addChatMessage(reply, "bot")
+  }, 500)
+  
 }
 
 function addChatMessage(message, type) {
   const messages = document.getElementById("chatbotMessages")
   if (!messages) return
 
-  const avatar = type === "bot" ? "🤖" : "👤"
-  const messageClass = type === "bot" ? "bot-message" : "user-message"
+  const msg = document.createElement("div")
+  msg.className = `chat-message ${type}`
 
-  const messageHTML = `
-        <div class="${messageClass}">
-            <div class="message-avatar">${avatar}</div>
-            <div class="message-bubble">${message}</div>
-        </div>
-    `
-  messages.insertAdjacentHTML("beforeend", messageHTML)
+  msg.innerText = message
+
+  messages.appendChild(msg)
   messages.scrollTop = messages.scrollHeight
 }
 
 
 
-function sendMessage() {
+
+async function sendMessage() {
   const input = document.getElementById("chatInput")
   const messages = document.getElementById("chatbotMessages")
   const welcome = document.querySelector(".chatbot-welcome")
@@ -495,7 +474,7 @@ function sendMessage() {
   const message = input.value.trim()
   if (!message) return
 
-  // Show chat messages area if hidden
+  // Show chat messages area
   if (messages.style.display === "none") {
     messages.style.display = "block"
     if (welcome) welcome.style.display = "none"
@@ -503,23 +482,26 @@ function sendMessage() {
     if (questions) questions.style.display = "none"
   }
 
-
   // Add user message
   addChatMessage(message, "user")
   input.value = ""
 
-  // Simulate AI response
-  setTimeout(() => {
-    const responses = [
-      "I can help you check your visa eligibility. Would you like to start?",
-      "I recommend exploring opportunities in Canada and Australia. Interested?",
-      "I can guide you through the application process. What would you like to know?",
-    ]
+  // Fetch backend response
+  try {
+    const res = await fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message })
+    })
 
-    const randomResponse = responses[Math.floor(Math.random() * responses.length)]
-    addChatMessage(randomResponse, "bot")
-  }, 1000)
+    const data = await res.json()
+    addChatMessage(data.reply || "Sorry, I couldn't find an answer.", "bot")
+  } catch (err) {
+    console.error(err)
+    addChatMessage("Something went wrong. Please try again later.", "bot")
+  }
 }
+
 
 // Scroll-triggered animations
 const observerOptions = {
@@ -649,4 +631,45 @@ function initSearchModal() {
     if (e.target === searchModal) window.closeSearchModal()
   })
 }
+
+async function searchJobs() {
+  const res = await fetch("/api/jobs?q=developer&location=nairobi")
+  const data = await res.json()
+  console.log(data.results)
+}
+
+searchJobs()
+
+async function sendMessage() {
+  const input = document.getElementById("chatInput")
+  const message = input.value
+
+  const res = await fetch("/api/chat", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message })
+  })
+
+  const data = await res.json()
+  console.log("Bot:", data.reply)
+}
+
+async function getBotReply(message) {
+  try {
+    const res = await fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message })
+    })
+
+    const data = await res.json()
+    return data.reply || "Sorry, I couldn't find an answer."
+  } catch (err) {
+    console.error(err)
+    return "Something went wrong while fetching results."
+  }
+}
+
+
+
 
