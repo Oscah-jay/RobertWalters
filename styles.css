@@ -658,7 +658,7 @@
   
   .location-details {
     position: relative;
-    top: 10rem;
+    top: -25rem;
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
     background: rgba(30, 41, 59, 0.98);
