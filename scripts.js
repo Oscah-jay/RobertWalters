@@ -85,8 +85,8 @@ function initMobileMenu() {
     navLinks.classList.toggle("active")
     const icon = newBtn.querySelector("i")
     if (!icon) return
-    icon.classList.toggle("fa-bars")
     icon.classList.toggle("fa-times")
+    icon.classList.toggle("fa-bars")
   })
 }
 

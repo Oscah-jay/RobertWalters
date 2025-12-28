@@ -15,9 +15,9 @@ document.addEventListener("DOMContentLoaded", () => {
   
         const icon = mobileToggle.querySelector("i")
         if (sidebar.classList.contains("active")) {
-          icon.classList.replace("fa-bars", "fa-times")
-        } else {
           icon.classList.replace("fa-times", "fa-bars")
+        } else {
+          icon.classList.replace("fa-bars", "fa-times")
         }
       })
     }
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         sidebar.classList.remove("active")
         overlay.style.display = "none"
         const icon = mobileToggle.querySelector("i")
-        icon.classList.replace("fa-times", "fa-bars")
+        icon.classList.replace("fa-bars", "fa-times")
       })
     }
   
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (window.innerWidth <= 992) {
           sidebar.classList.remove("active")
           const icon = mobileToggle.querySelector("i")
-          icon.classList.replace("fa-times", "fa-bars")
+          icon.classList.replace("fa-bars", "fa-times")
         }
       })
     })

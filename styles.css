@@ -339,9 +339,32 @@
   
   .section-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
+    margin-top: -20rem;
   }
-  
+
+  .section-header1 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .section-header2 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .section-header3 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .section-header4 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .section-header5 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
   .section-title {
     font-size: 2.5rem;
     font-weight: 700;
@@ -479,6 +502,7 @@
     border-radius: 20px;
     padding: 2rem;
     overflow: hidden;
+    height: 100%;
   }
   
   .realistic-world-map {
@@ -633,8 +657,8 @@
   }
   
   .location-details {
-    position: absolute;
-    top: 50%;
+    position: relative;
+    top: 10rem;
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
     background: rgba(30, 41, 59, 0.98);
@@ -647,6 +671,8 @@
     transition: all 0.3s ease;
     z-index: 100;
     opacity: 0;
+    max-width: 50%;
+
   }
   
   .location-details.show {
@@ -774,6 +800,7 @@
   .destination-trend.up {
     color: var(--success);
   }
+  
   
   
   /* Resources Section */
@@ -1408,6 +1435,7 @@
   .send-btn:active {
     transform: scale(0.95);
   }
+
   
   
   /* Responsive Design */
@@ -1456,6 +1484,36 @@
   
     .nav-links.active {
       transform: translateY(0);
+    }
+
+    .section-header2 {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      text-align: center;
+    }
+
+    .section-header3 {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      text-align: center;
+    }
+
+    .section-header4 {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      text-align: center;
+      top: -2rem;
+    }
+
+    .section-header5 {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      text-align: center;
+      top: -2rem;
     }
   
     .hero-title {
@@ -1514,9 +1572,11 @@
   }
   
 
-  /* Added responsive styles for mobile phones */
 @media (max-width: 768px) {
-  /* Make map markers smaller and more visible on mobile */
+  .world-map-container{
+    margin-bottom: 50px;
+  }
+
   .map-marker {
     animation: markerBounce 3s infinite;
     
@@ -1568,8 +1628,8 @@
 
   /* Make location details responsive */
   .location-details {
-    min-width: 90vw;
-    max-width: 90vw;
+    top: 25rem;
+    position: fixed;
     padding: 1.5rem;
     max-height: 80vh;
     overflow-y: auto;
@@ -1805,6 +1865,11 @@
   .jobs-grid {
     grid-template-columns: 1fr;
   }
+
+  .section-header{
+    margin-top: 5rem;
+  }
+  
 }
 
 
@@ -2319,9 +2384,6 @@
 }
 
 @media (max-width: 768px) {
-  .nav-links {
-    display: none; /* Mobile menu handled by JS toggle */
-  }
 
   .hero-title {
     font-size: 2.5rem;
