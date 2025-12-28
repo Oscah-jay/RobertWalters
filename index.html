@@ -48,7 +48,7 @@
                 <button class="btn btn-primary" onclick="scrollToSection('eligibility')">
                     <i class="fas fa-rocket"></i> Check Eligibility
                 </button>
-                <button class="btn btn-secondary" onclick="scrollToSection('opportunities')">
+                <button class="btn btn-secondary" onclick="openSearchModal()">
                     <i class="fas fa-search"></i> Explore Opportunities
                 </button>
             </div>
@@ -384,6 +384,151 @@
         </div>
     </div>
 
+
+     <!-- Added Community Forum Preview Section -->
+     <section class="section community-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Community Insights</h2>
+                <p class="section-subtitle">Connect with others on their global journey</p>
+            </div>
+            <div class="community-grid">
+                <div class="community-card glass-card">
+                    <span class="forum-tag">Visa Advice</span>
+                    <h3>H1-B Processing Times 2024</h3>
+                    <p>Latest updates on processing times across different consulates...</p>
+                    <div class="forum-meta">
+                        <span><i class="far fa-comment"></i> 24 comments</span>
+                        <span><i class="far fa-heart"></i> 56 likes</span>
+                    </div>
+                </div>
+                <div class="community-card glass-card">
+                    <span class="forum-tag">Relocation</span>
+                    <h3>Finding accommodation in Toronto</h3>
+                    <p>A comprehensive guide to the best neighborhoods for newcomers...</p>
+                    <div class="forum-meta">
+                        <span><i class="far fa-comment"></i> 18 comments</span>
+                        <span><i class="far fa-heart"></i> 42 likes</span>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button class="btn btn-secondary" onclick="alert('Forum coming soon!')">Visit Full Forum</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Mobility Services Section -->
+    <section class="section mobility-services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Global Mobility Services</h2>
+                <p class="section-subtitle">Seamless relocation support for you and your family</p>
+            </div>
+            <div class="mobility-grid">
+                <div class="mobility-card">
+                    <div class="mobility-icon"><i class="fas fa-passport"></i></div>
+                    <h3>Work Visa Processing</h3>
+                    <p>End-to-end assistance with work permit applications and visa sponsorship transitions.</p>
+                </div>
+                <div class="mobility-card">
+                    <div class="mobility-icon"><i class="fas fa-route"></i></div>
+                    <h3>Relocation Guidance</h3>
+                    <p>Expert advice on moving logistics, neighborhood selection, and settling into your new country.</p>
+                </div>
+                <div class="mobility-card">
+                    <div class="mobility-icon"><i class="fas fa-handshake"></i></div>
+                    <h3>Employer Coordination</h3>
+                    <p>Direct communication with international employers to streamline the hiring and onboarding process.</p>
+                </div>
+                <div class="mobility-card">
+                    <div class="mobility-icon"><i class="fas fa-file-shield"></i></div>
+                    <h3>Compliance & Document Handling</h3>
+                    <p>Professional management of legal paperwork, apostille services, and regulatory compliance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Added Detailed Visa Pricing Guide Section with KES rates 
+<section class="section pricing-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Visa Pricing Guide</h2>
+            <p class="section-subtitle">Transparent breakdown of official government fees and service charges in KES</p>
+        </div>
+        <div class="pricing-container glass-card">
+            <div class="pricing-table-wrapper">
+                <table class="pricing-table">
+                    <thead>
+                        <tr>
+                            <th>Destination</th>
+                            <th>Visa Type</th>
+                            <th>Government Fee (Approx. KES)</th>
+                            <th>Service Charge (KES)</th>
+                            <th>Processing Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="td-country">
+                                    <span class="flag">🇬🇧</span>
+                                    <span>United Kingdom</span>
+                                </div>
+                            </td>
+                            <td>Skilled Worker Visa</td>
+                            <td>KES 120,000</td>
+                            <td>KES 45,000</td>
+                            <td>3 - 8 Weeks</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="td-country">
+                                    <span class="flag">🇨🇦</span>
+                                    <span>Canada</span>
+                                </div>
+                            </td>
+                            <td>Express Entry (PR)</td>
+                            <td>KES 145,000</td>
+                            <td>KES 50,000</td>
+                            <td>6 - 8 Months</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="td-country">
+                                    <span class="flag">🇩🇪</span>
+                                    <span>Germany</span>
+                                </div>
+                            </td>
+                            <td>Opportunity Card</td>
+                            <td>KES 11,500</td>
+                            <td>KES 35,000</td>
+                            <td>4 - 12 Weeks</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="td-country">
+                                    <span class="flag">🇦🇺</span>
+                                    <span>Australia</span>
+                                </div>
+                            </td>
+                            <td>Skilled Independent (189)</td>
+                            <td>KES 450,000</td>
+                            <td>KES 65,000</td>
+                            <td>8 - 12 Months</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pricing-footer">
+                <p><i class="fas fa-info-circle"></i> Rates are subject to exchange rate fluctuations. Government fees exclude biometric and medical examination costs.</p>
+            </div>
+        </div>
+    </div>
+</section>
+</main>
+
     <!-- Resources Section-->
     <section class="section" id="resources">
         <div class="container">
@@ -500,6 +645,82 @@
         </div>
     </section>
 
+     <!-- Added Search & Filtering Modal for Advanced Job Search -->
+     <div id="searchModal" class="modal-overlay">
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h3><i class="fas fa-search"></i> Advanced Job Search</h3>
+                <button class="close-modal" onclick="closeSearchModal()">&times;</button>
+            </div>
+            <form id="advancedSearchForm" class="search-modal-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="searchTitle">Job Title</label>
+                        <input type="text" id="searchTitle" placeholder="e.g. Software Engineer">
+                    </div>
+                    <div class="form-group">
+                        <label for="searchIndustry">Industry</label>
+                        <select id="searchIndustry">
+                            <option value="">All Industries</option>
+                            <option value="tech">Technology</option>
+                            <option value="health">Healthcare</option>
+                            <option value="finance">Finance</option>
+                            <option value="edu">Education</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="searchCountry">Target Country</label>
+                        <select id="searchCountry">
+                            <option value="">Anywhere</option>
+                            <option value="uk">United Kingdom</option>
+                            <option value="ca">Canada</option>
+                            <option value="de">Germany</option>
+                            <option value="au">Australia</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="searchVisa">Visa Preference</label>
+                        <select id="searchVisa">
+                            <option value="">Any Visa Type</option>
+                            <option value="sponsored">Company Sponsored</option>
+                            <option value="bluecard">EU Blue Card</option>
+                            <option value="skilled">Skilled Worker</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="searchWorkType">Work Mode</label>
+                        <select id="searchWorkType">
+                            <option value="onsite">On-site / Relocation</option>
+                            <option value="remote">Remote (Global)</option>
+                            <option value="hybrid">Hybrid</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="searchExp">Experience Level</label>
+                        <select id="searchExp">
+                            <option value="entry">Entry Level</option>
+                            <option value="mid">Mid-Senior</option>
+                            <option value="expert">Expert / Specialist</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group slider-group">
+                    <label>Salary Range (Annual USD)</label>
+                    <div class="salary-range-wrapper">
+                        <div class="salary-values">
+                            <span>$40k</span>
+                            <span>$250k+</span>
+                        </div>
+                        <input type="range" id="searchSalary" min="40000" max="250000" step="5000">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">
+                    <i class="fas fa-filter"></i> Search Opportunities
+                </button>
+            </form>
+        </div>
+    </div>
+
 
    <!-- AI Chatbot -->
    <div class="chatbot-bubble" id="chatbotBubble" onclick="toggleChatbot()">
@@ -521,7 +742,7 @@
                 </div>
             </div>
         </div>
-        <button onclick="toggleChatbot()" class="chatbot-close-btn">
+        <button class="chatbot-close-btn">
             <i class="fas fa-times"></i>
         </button>
     </div>
@@ -643,5 +864,8 @@
 
 
     <script src="scripts.js"></script>
+
+    
+      
 </body>
 </html>

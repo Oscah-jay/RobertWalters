@@ -1,162 +1,137 @@
-// GlobalCareer Connect initialized
-document.addEventListener("DOMContentLoaded", () => {
-    console.log("GlobalCareer Connect initialized")
-  
-    // Show home page by default
-    showPage("home")
-  
-    // Add smooth reveal animations on load
-    const hero = document.querySelector(".hero")
-    setTimeout(() => {
-      hero.style.opacity = "1"
-    }, 100)
-  })
-  
-  // Global App Controller
-  document.addEventListener("DOMContentLoaded", () => {
-    console.log("[v0] Initializing Independent Components...")
-    initNavbar()
-    initMobileMenu()
-    initEligibilityChecker()
-    initWorldMap()
-    initEmployerPortal()
-    initResources()
-    initAuthSystem()
-    initChatbot()
-    initAnimations()
-    initNavigation()
-  })
-  
-  function initNavbar() {
+// Navbar scroll effect
+window.addEventListener("scroll", () => {
     const navbar = document.getElementById("navbar")
-    if (!navbar) return
-  
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 50) {
-        navbar.classList.add("scrolled")
-      } else {
-        navbar.classList.remove("scrolled")
-      }
-    })
-  }
-  
-  function initMobileMenu() {
-    const mobileMenuBtn = document.getElementById("mobileMenuBtn")
-    const navLinks = document.getElementById("navLinks")
-    if (!mobileMenuBtn || !navLinks) return
-  
-    mobileMenuBtn.addEventListener("click", () => {
-      navLinks.classList.toggle("active")
-      const icon = mobileMenuBtn.querySelector("i")
-      if (icon) {
-        icon.classList.toggle("fa-bars", !navLinks.classList.contains("active"))
-        icon.classList.toggle("fa-times", navLinks.classList.contains("active"))
-      }
-    })
-  }
-  
-  function initEligibilityChecker() {
-    const eligibilityForm = document.getElementById("eligibilityForm")
-    const eligibilityResult = document.getElementById("eligibilityResult")
-    if (!eligibilityForm || !eligibilityResult) return
-  
-    eligibilityForm.addEventListener("submit", (e) => {
-      e.preventDefault()
-      const profession = document.getElementById("profession")?.value
-      const experience = document.getElementById("experience")?.value
-  
-      eligibilityResult.innerHTML =
-        '<p class="loading-state"><i class="fas fa-spinner fa-spin"></i> Analyzing with AI...</p>'
-      eligibilityResult.classList.add("show")
-  
-      setTimeout(() => {
-        // Result generation logic (remains independent)
-        let resultHTML = `<h4 class="match-title"><i class="fas fa-check-circle"></i> AI Recommended Matches</h4>`
-        // ... result logic ...
-        resultHTML += `<button onclick="resetEligibilityChecker()" class="btn btn-secondary btn-full"><i class="fas fa-redo"></i> Check Another Path</button>`
-        eligibilityResult.innerHTML = resultHTML
-      }, 1500)
-    })
-  }
-  
-  window.resetEligibilityChecker = () => {
-    const res = document.getElementById("eligibilityResult")
-    const form = document.getElementById("eligibilityForm")
-    if (res) {
-      res.classList.remove("show")
-      res.innerHTML = ""
+    if (window.scrollY > 50) {
+      navbar.classList.add("scrolled")
+    } else {
+      navbar.classList.remove("scrolled")
     }
-    if (form) form.reset()
-  }
+  })
   
-  function initWorldMap() {
-    const hotspots = document.querySelectorAll(".hotspot")
-    const details = document.getElementById("locationDetails")
-    if (hotspots.length === 0 || !details) return
+  // Mobile menu toggle
+  const mobileMenuBtn = document.getElementById("mobileMenuBtn")
+  const navLinks = document.getElementById("navLinks")
   
-    hotspots.forEach((hotspot) => {
-      hotspot.addEventListener("click", () => {
-        const country = hotspot.getAttribute("data-country")
-        const jobs = hotspot.getAttribute("data-jobs")
-  
-        const nameEl = document.getElementById("locationName")
-        const jobsEl = document.getElementById("locationJobs")
-  
-        if (nameEl) nameEl.textContent = country
-        if (jobsEl) jobsEl.textContent = jobs
-        // ... other fields with checks ...
-  
-        details.classList.add("show")
-      })
-    })
-  }
-  
-  window.closeLocationDetails = () => {
-    const details = document.getElementById("locationDetails")
-    if (details) details.classList.remove("show")
-  }
-  
-  function initNavigation() {
-    // Tab handling
-    window.openTab = (tabId) => {
-      const tab = document.getElementById(`tab-${tabId}`)
-      if (tab) {
-        tab.classList.add("active")
-        document.body.style.overflow = "hidden"
-      }
+  mobileMenuBtn.addEventListener("click", () => {
+    navLinks.classList.toggle("active")
+    const icon = mobileMenuBtn.querySelector("i")
+    if (navLinks.classList.contains("active")) {
+      icon.classList.remove("fa-bars")
+      icon.classList.add("fa-times")
+    } else {
+      icon.classList.remove("fa-times")
+      icon.classList.add("fa-bars")
     }
-  
-    window.closeTab = (tabId) => {
-      const tab = document.getElementById(`tab-${tabId}`)
-      if (tab) {
-        tab.classList.remove("active")
-        document.body.style.overflow = ""
-      }
-    }
-  
-    // Close overlays on outside click
-    const navLinks = document.getElementById("navLinks") // Declare navLinks here
-    document.querySelectorAll(".tab-overlay").forEach((overlay) => {
-      overlay.addEventListener("click", (e) => {
-        if (e.target === overlay) window.closeTab(overlay.id.replace("tab-", "")) // Use window.closeTab here
-      })
-    })
-  
-    // Global escape key
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        document.querySelectorAll(".tab-overlay.active").forEach((t) => t.classList.remove("active"))
-        document.body.style.overflow = ""
-      }
-    })
-  }
+  })
   
   // Smooth scrolling
   function scrollToSection(sectionId) {
     const section = document.getElementById(sectionId)
-    const navLinks = document.getElementById("navLinks") // Declare navLinks here
     section.scrollIntoView({ behavior: "smooth" })
     navLinks.classList.remove("active")
+  }
+  
+  // Eligibility Form Submission
+  const eligibilityForm = document.getElementById("eligibilityForm")
+  const eligibilityResult = document.getElementById("eligibilityResult")
+  
+  eligibilityForm.addEventListener("submit", (e) => {
+    e.preventDefault()
+  
+    const profession = document.getElementById("profession").value
+    const experience = document.getElementById("experience").value
+  
+    // Simulate AI processing
+    eligibilityResult.innerHTML =
+      '<p style="text-align: center; color: var(--text-secondary);"><i class="fas fa-spinner fa-spin"></i> Analyzing your profile with AI...</p>'
+    eligibilityResult.classList.add("show")
+  
+    setTimeout(() => {
+      const countries = [
+        { name: "United States", match: "95%", visa: "H-1B" },
+        { name: "Canada", match: "92%", visa: "Express Entry" },
+        { name: "Australia", match: "90%", visa: "Skilled Independent" },
+        { name: "Germany", match: "88%", visa: "EU Blue Card" },
+      ]
+  
+      let resultHTML = `
+              <h4 style="margin-bottom: 1rem; color: var(--secondary);"><i class="fas fa-check-circle"></i> Your Best Matches</h4>
+              <div style="display: grid; gap: 1rem;">
+          `
+  
+      countries.forEach((country) => {
+        resultHTML += `
+                  <div style="background: rgba(15, 23, 42, 0.5); padding: 1rem; border-radius: 10px; display: flex; justify-content: space-between; align-items: center;">
+                      <div>
+                          <strong style="color: var(--text-primary);">${country.name}</strong>
+                          <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0.3rem 0;">Visa: ${country.visa}</p>
+                      </div>
+                      <div style="text-align: right;">
+                          <div style="color: var(--secondary); font-weight: 700; font-size: 1.2rem;">${country.match}</div>
+                          <div style="color: var(--text-secondary); font-size: 0.85rem;">Match</div>
+                      </div>
+                  </div>
+              `
+      })
+  
+      resultHTML += `
+              </div>
+              <button onclick="resetEligibilityChecker()" class="btn btn-secondary btn-full" style="margin-top: 1.5rem;">
+                  <i class="fas fa-redo"></i> Check Another Path
+              </button>
+          `
+      eligibilityResult.innerHTML = resultHTML
+    }, 2000)
+  })
+  
+  function resetEligibilityChecker() {
+    const eligibilityResult = document.getElementById("eligibilityResult")
+    const eligibilityForm = document.getElementById("eligibilityForm")
+  
+    // Hide results
+    eligibilityResult.classList.remove("show")
+    eligibilityResult.innerHTML = ""
+  
+    // Reset form
+    eligibilityForm.reset()
+  }
+  
+  // Map hotspot interactions
+  const hotspots = document.querySelectorAll(".hotspot")
+  hotspots.forEach((hotspot) => {
+    hotspot.addEventListener("click", function () {
+      showLocationDetails(this)
+    })
+  })
+  
+  function showLocationDetails(element) {
+    const country = element.getAttribute("data-country")
+    const jobs = element.getAttribute("data-jobs")
+    const visa = element.getAttribute("data-top-visa")
+    const salary = element.getAttribute("data-salary")
+    const demand = element.getAttribute("data-demand")
+  
+    document.getElementById("locationName").textContent = country
+    document.getElementById("locationJobs").textContent = jobs
+    document.getElementById("locationVisa").textContent = visa
+    document.getElementById("locationSalary").textContent = salary
+    document.getElementById("locationDemand").textContent = demand
+  
+    document.getElementById("locationDetails").classList.add("show")
+  }
+  
+  function closeLocationDetails() {
+    document.getElementById("locationDetails").classList.remove("show")
+  }
+  
+  function applyToLocation() {
+    const locationName = document.getElementById("locationName").textContent
+    alert(
+      `Great choice! Let's start your application process for ${locationName}.\n\nYou'll be redirected to the Employers section.`,
+    )
+    closeLocationDetails()
+    closeTab("opportunities")
+    setTimeout(() => openTab("employers"), 300)
   }
   
   // Employer Form Submission
@@ -175,8 +150,6 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault()
   
     const submitButton = employerForm.querySelector('button[type="submit"]')
-    if (!submitButton) return
-  
     const originalText = submitButton.innerHTML
   
     submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...'
@@ -186,15 +159,12 @@ document.addEventListener("DOMContentLoaded", () => {
       submitButton.innerHTML = '<i class="fas fa-check"></i> Submitted Successfully!'
       setTimeout(() => {
         employerForm.reset()
-        const fileLabel = document.getElementById("fileLabel")
-        if (fileLabel) {
-          fileLabel.innerHTML = '<i class="fas fa-cloud-upload-alt"></i> Upload Resume (PDF, DOC)'
-          fileLabel.style.color = ""
-        }
+        fileLabel.innerHTML = '<i class="fas fa-cloud-upload-alt"></i> Upload Resume (PDF, DOC)'
+        fileLabel.style.color = ""
         submitButton.innerHTML = originalText
         submitButton.disabled = false
         alert("Your application has been submitted successfully! The recruiter will contact you soon.")
-        if (typeof closeRecruiterModal === "function") closeRecruiterModal()
+        closeRecruiterModal()
       }, 2000)
     }, 2000)
   })
@@ -279,63 +249,68 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   
   // Chatbot
-  function initChatbot() {
-    const chatbotBubble = document.getElementById("chatbotBubble")
-    const chatbotWindow = document.getElementById("chatbotWindow")
-    const chatbotMessages = document.getElementById("chatbotMessages")
-    const chatInput = document.getElementById("chatInput")
+  const chatbotBubble = document.getElementById("chatbotBubble")
+  const chatbotWindow = document.getElementById("chatbotWindow")
+  const chatbotMessages = document.getElementById("chatbotMessages")
+  const chatInput = document.getElementById("chatInput")
   
-    if (chatbotBubble && chatbotWindow) {
-      chatbotBubble.addEventListener("click", () => {
-        chatbotWindow.classList.toggle("show")
-        if (chatbotWindow.classList.contains("show") && chatInput) {
-          chatInput.focus()
+  function toggleChatbot() {
+    chatbotWindow.classList.toggle("show")
+    if (chatbotWindow.classList.contains("show")) {
+      chatInput.focus()
+    }
+  }
+  
+  function handleQuickAction(action) {
+    const actions = {
+      hiring: "I'm looking to hire talent for my company.",
+      seeking: "I'm looking for job opportunities internationally.",
+      visa: "I need help with visa requirements and applications.",
+      demo: "I'd like to book a demo to learn more about your services.",
+    }
+  
+    const message = actions[action]
+    if (message) {
+      // Show chat messages area
+      chatbotMessages.style.display = "block"
+      document.querySelector(".chatbot-welcome").style.display = "none"
+      document.querySelector(".chatbot-quick-actions").style.display = "none"
+      document.querySelector(".chatbot-quick-questions").style.display = "none"
+  
+      // Add user message
+      addChatMessage(message, "user")
+  
+      // Add bot response based on action
+      setTimeout(() => {
+        let response = ""
+        switch (action) {
+          case "hiring":
+            response =
+              "Great! I can help you find the perfect talent. Let me guide you through our employer matching service. What positions are you looking to fill?"
+            break
+          case "seeking":
+            response =
+              "Excellent! I'll help you find international opportunities that match your skills. First, let me check your eligibility. What's your current profession?"
+            break
+          case "visa":
+            response =
+              "I'd be happy to help with visa information! Our AI-powered system can check your eligibility for various countries. Which country are you interested in?"
+            break
+          case "demo":
+            response =
+              "Perfect! I can connect you with our team for a personalized demo. What's the best email to reach you at?"
+            break
         }
-      })
-    }
-  
-    // Exposed to window for inline quick action buttons
-    window.handleQuickAction = (action) => {
-      if (!chatbotMessages) return
-  
-      const actions = {
-        hiring: "I'm looking to hire talent for my company.",
-        seeking: "I'm looking for job opportunities internationally.",
-        visa: "I need help with visa requirements and applications.",
-        demo: "I'd like to book a demo to learn more about your services.",
-      }
-  
-      const message = actions[action]
-      if (message) {
-        chatbotMessages.style.display = "block"
-        document.querySelector(".chatbot-welcome").style.display = "none"
-        document.querySelector(".chatbot-quick-actions").style.display = "none"
-        document.querySelector(".chatbot-quick-questions").style.display = "none"
-  
-        addChatMessage(message, "user")
-        // ... existing response logic ...
-      }
-    }
-  
-    console.log("Chatbot initialized")
-  }
-  
-  window.toggleChatbot = () => {
-    const chatbotWindow = document.getElementById("chatbotWindow")
-    const chatInput = document.getElementById("chatInput")
-    if (chatbotWindow) {
-      chatbotWindow.classList.toggle("show")
-      if (chatbotWindow.classList.contains("show") && chatInput) {
-        chatInput.focus()
-      }
+        addChatMessage(response, "bot")
+      }, 800)
     }
   }
   
-  function handleQuickQuestion(button) {
+  function askQuickQuestion(button) {
     const question = button.textContent
   
     // Show chat messages area
-    document.getElementById("chatbotMessages").style.display = "block"
+    chatbotMessages.style.display = "block"
     document.querySelector(".chatbot-welcome").style.display = "none"
     document.querySelector(".chatbot-quick-actions").style.display = "none"
     document.querySelector(".chatbot-quick-questions").style.display = "none"
@@ -369,17 +344,17 @@ document.addEventListener("DOMContentLoaded", () => {
               <div class="message-bubble">${message}</div>
           </div>
       `
-    document.getElementById("chatbotMessages").insertAdjacentHTML("beforeend", messageHTML)
-    document.getElementById("chatbotMessages").scrollTop = document.getElementById("chatbotMessages").scrollHeight
+    chatbotMessages.insertAdjacentHTML("beforeend", messageHTML)
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight
   }
   
   function sendMessage() {
-    const message = document.getElementById("chatInput").value.trim()
+    const message = chatInput.value.trim()
     if (!message) return
   
     // Show chat messages area if hidden
-    if (document.getElementById("chatbotMessages").style.display === "none") {
-      document.getElementById("chatbotMessages").style.display = "block"
+    if (chatbotMessages.style.display === "none") {
+      chatbotMessages.style.display = "block"
       document.querySelector(".chatbot-welcome").style.display = "none"
       document.querySelector(".chatbot-quick-actions").style.display = "none"
       document.querySelector(".chatbot-quick-questions").style.display = "none"
@@ -387,7 +362,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
     // Add user message
     addChatMessage(message, "user")
-    document.getElementById("chatInput").value = ""
+    chatInput.value = ""
   
     // Simulate AI response
     setTimeout(() => {
@@ -470,6 +445,51 @@ document.addEventListener("DOMContentLoaded", () => {
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
   
+  function openTab(tabName) {
+    const tab = document.getElementById(`tab-${tabName}`)
+    if (tab) {
+      tab.classList.add("active")
+      document.body.style.overflow = "hidden"
+  
+      // Close mobile menu if open
+      const navLinks = document.getElementById("navLinks")
+      const mobileMenuBtn = document.getElementById("mobileMenuBtn")
+      navLinks.classList.remove("active")
+      const icon = mobileMenuBtn.querySelector("i")
+      icon.classList.remove("fa-times")
+      icon.classList.add("fa-bars")
+    }
+  }
+  
+  function closeTab(tabName) {
+    const tab = document.getElementById(`tab-${tabName}`)
+    if (tab) {
+      tab.classList.remove("active")
+      document.body.style.overflow = ""
+    }
+  }
+  
+  // Close tab on escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      const activeTabs = document.querySelectorAll(".tab-overlay.active")
+      activeTabs.forEach((tab) => {
+        tab.classList.remove("active")
+        document.body.style.overflow = ""
+      })
+    }
+  })
+  
+  // Close tab on overlay click
+  document.querySelectorAll(".tab-overlay").forEach((overlay) => {
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) {
+        overlay.classList.remove("active")
+        document.body.style.overflow = ""
+      }
+    })
+  })
+  
   function openRecruiterForm(jobTitle, company) {
     const modal = document.getElementById("recruiterModal")
     document.getElementById("modalJobTitle").textContent = jobTitle
@@ -488,165 +508,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   
   // Initialize
-  function initAnimations() {
-    console.log("Animations initialized")
-  }
+  document.addEventListener("DOMContentLoaded", () => {
+    console.log("GlobalCareer Connect initialized")
   
-  function initAuthSystem() {
-    console.log("[v0] Auth moved to external page (auth.html)")
-  }
+    // Show home page by default
+    showPage("home")
   
-  function initEmployerPortal() {
-    console.log("Employer Portal initialized")
-  }
-  
-  function initResources() {
-    console.log("Resources initialized")
-  }
-  
-  
-
-  // Check for "authentication"
-  document.addEventListener('DOMContentLoaded', () => {
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    if (!isLoggedIn) {
-        alert('Please sign in to access your dashboard.');
-        window.location.href = 'auth.html';
-    }
-});
-
-// Mobile menu toggle functionality
-document.getElementById('mobileToggle').addEventListener('click', () => {
-    document.querySelector('.sidebar').classList.toggle('active');
-});
-
-
-
-/**
- * GlobalCareer Connect - Dashboard Controller
- * Handles application tracking, visa progress, and user stats
- */
-
-document.addEventListener("DOMContentLoaded", () => {
-    const mobileToggle = document.getElementById("mobileToggle")
-    const sidebar = document.querySelector(".sidebar")
-  
-    if (mobileToggle && sidebar) {
-      mobileToggle.addEventListener("click", () => {
-        sidebar.classList.toggle("active")
-        const icon = mobileToggle.querySelector("i")
-        if (sidebar.classList.contains("active")) {
-          icon.classList.replace("fa-bars", "fa-times")
-        } else {
-          icon.classList.replace("fa-times", "fa-bars")
-        }
-      })
-    }
-  
-    const sidebarLinks = document.querySelectorAll(".sidebar-link")
-    sidebarLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        if (window.innerWidth <= 992) {
-          sidebar.classList.remove("active")
-          const icon = mobileToggle.querySelector("i")
-          icon.classList.replace("fa-times", "fa-bars")
-        }
-      })
-    })
-  
-    console.log("[v0] Initializing Dashboard System...")
-  
-    // Security Check: Ensure user is logged in
-    checkAuth()
-  
-    // Initialize all dashboard components
-    initUserStats()
-    initApplicationTracker()
-    initVisaProgress()
-    initDashboardNavigation()
+    // Add smooth reveal animations on load
+    const hero = document.querySelector(".hero")
+    setTimeout(() => {
+      hero.style.opacity = "1"
+    }, 100)
   })
-  
-  /**
-   * Verifies authentication state
-   */
-  function checkAuth() {
-    const isLoggedIn = localStorage.getItem("isLoggedIn")
-    if (!isLoggedIn) {
-      console.log("[v0] Unauthorized access - redirecting to login")
-      window.location.href = "auth.html"
-    }
-  }
-  
-  /**
-   * Populates user stats and welcome message
-   */
-  function initUserStats() {
-    const welcomeTitle = document.querySelector(".welcome-text h1")
-    const userData = JSON.parse(localStorage.getItem("userData") || '{"name": "John Doe"}')
-  
-    if (welcomeTitle) {
-      welcomeTitle.textContent = `Welcome back, ${userData.name.split(" ")[0]}!`
-    }
-  }
-  
-  /**
-   * Handles application tracker interactions
-   */
-  function initApplicationTracker() {
-    const applicationItems = document.querySelectorAll(".application-item")
-  
-    applicationItems.forEach((item) => {
-      item.addEventListener("click", () => {
-        const company = item.querySelector("h4")?.textContent
-        console.log(`[v0] Viewing details for: ${company}`)
-        // In a real app, this would open a detailed view or modal
-      })
-    })
-  }
-  
-  /**
-   * Initializes visa progress tracking
-   */
-  function initVisaProgress() {
-    const visaSection = document.querySelector(".glass-card h3")
-    if (visaSection && visaSection.textContent.includes("Visa Progress")) {
-      console.log("[v0] Visa tracking initialized")
-    }
-  }
-  
-  /**
-   * Handles dashboard sidebar navigation
-   */
-  function initDashboardNavigation() {
-    const navLinks = document.querySelectorAll(".sidebar-link")
-  
-    navLinks.forEach((link) => {
-      link.addEventListener("click", (e) => {
-        // Prevent default for demo purposes if it's just a hash
-        if (link.getAttribute("href") === "#") {
-          e.preventDefault()
-          navLinks.forEach((l) => l.classList.remove("active"))
-          link.classList.add("active")
-          console.log(`[v0] Navigating to: ${link.querySelector("span")?.textContent}`)
-        }
-      })
-    })
-  
-    // Logout functionality
-    const logoutBtn = document.querySelector(".fas.fa-sign-out-alt")?.parentElement
-    if (logoutBtn) {
-      logoutBtn.addEventListener("click", (e) => {
-        e.preventDefault()
-        localStorage.removeItem("isLoggedIn")
-        window.location.href = "index.html"
-      })
-    }
-  }
-  
-  /**
-   * Helper to add new application (Demo functionality)
-   */
-  window.addNewApplication = () => {
-    alert("This would open a form to manually add or sync a new job application.")
-  }
   

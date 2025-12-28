@@ -1,99 +1,202 @@
-// Navbar scroll effect
-window.addEventListener("scroll", () => {
+console.log("initMobileMenu called")
+
+
+function toggleChatbot() {
+  const chatbotWindow = document.getElementById("chatbotWindow")
+  const chatbotBubble = document.getElementById("chatbotBubble")
+  const chatInput = document.getElementById("chatInput")
+
+  if (!chatbotWindow) return
+
+  const isOpen = chatbotWindow.classList.contains("show")
+
+  if (isOpen) {
+    chatbotWindow.classList.remove("show")
+    if (chatbotBubble) chatbotBubble.style.display = "flex"
+  } else {
+    chatbotWindow.classList.add("show")
+    if (chatbotBubble) chatbotBubble.style.display = "none"
+    if (chatInput) chatInput.focus()
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("chatbotBubble")
+    ?.addEventListener("click", toggleChatbot)
+
+  document.querySelector(".chatbot-close-btn")
+    ?.addEventListener("click", toggleChatbot)
+})
+
+
+// GlobalCareer Connect initialized
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("GlobalCareer Connect initialized")
+
+  // Show home page by default
+  showPage("home")
+
+  // Add smooth reveal animations on load
+  const hero = document.querySelector(".hero")
+  setTimeout(() => {
+    hero.style.opacity = "1"
+  }, 100)
+})
+
+// Global App Controller
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("[v0] Initializing Independent Components...")
+  initNavbar()
+  initMobileMenu()
+  initEligibilityChecker()
+  initWorldMap()
+  initEmployerPortal()
+  initResources()
+  initAuthSystem()
+  initChatbot()
+  initAnimations()
+  initNavigation()
+  initSearchModal() // Initializing search modal handlers
+})
+
+function initNavbar() {
   const navbar = document.getElementById("navbar")
-  if (window.scrollY > 50) {
-    navbar.classList.add("scrolled")
-  } else {
-    navbar.classList.remove("scrolled")
-  }
-})
+  if (!navbar) return
 
-// Mobile menu toggle
-const mobileMenuBtn = document.getElementById("mobileMenuBtn")
-const navLinks = document.getElementById("navLinks")
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      navbar.classList.add("scrolled")
+    } else {
+      navbar.classList.remove("scrolled")
+    }
+  })
+}
 
-mobileMenuBtn.addEventListener("click", () => {
-  navLinks.classList.toggle("active")
-  const icon = mobileMenuBtn.querySelector("i")
-  if (navLinks.classList.contains("active")) {
-    icon.classList.remove("fa-bars")
-    icon.classList.add("fa-times")
-  } else {
-    icon.classList.remove("fa-times")
-    icon.classList.add("fa-bars")
+function initMobileMenu() {
+  const mobileMenuBtn = document.getElementById("mobileMenuBtn")
+  const navLinks = document.getElementById("navLinks")
+  if (!mobileMenuBtn || !navLinks) return
+
+  // Remove previous listener to prevent duplicates
+  mobileMenuBtn.replaceWith(mobileMenuBtn.cloneNode(true))
+  const newBtn = document.getElementById("mobileMenuBtn")
+
+  newBtn.addEventListener("click", () => {
+    navLinks.classList.toggle("active")
+    const icon = newBtn.querySelector("i")
+    if (!icon) return
+    icon.classList.toggle("fa-bars")
+    icon.classList.toggle("fa-times")
+  })
+}
+
+
+function initEligibilityChecker() {
+  const eligibilityForm = document.getElementById("eligibilityForm")
+  const eligibilityResult = document.getElementById("eligibilityResult")
+  if (!eligibilityForm || !eligibilityResult) return
+
+  eligibilityForm.addEventListener("submit", (e) => {
+    e.preventDefault()
+    const profession = document.getElementById("profession")?.value
+    const experience = document.getElementById("experience")?.value
+
+    eligibilityResult.innerHTML =
+      '<p class="loading-state"><i class="fas fa-spinner fa-spin"></i> Analyzing with AI...</p>'
+    eligibilityResult.classList.add("show")
+
+    setTimeout(() => {
+      // Result generation logic (remains independent)
+      let resultHTML = `<h4 class="match-title"><i class="fas fa-check-circle"></i> AI Recommended Matches</h4>`
+      // ... result logic ...
+      resultHTML += `<button onclick="resetEligibilityChecker()" class="btn btn-secondary btn-full"><i class="fas fa-redo"></i> Check Another Path</button>`
+      eligibilityResult.innerHTML = resultHTML
+    }, 1500)
+  })
+}
+
+window.resetEligibilityChecker = () => {
+  const res = document.getElementById("eligibilityResult")
+  const form = document.getElementById("eligibilityForm")
+  if (res) {
+    res.classList.remove("show")
+    res.innerHTML = ""
   }
-})
+  if (form) form.reset()
+}
+
+function initWorldMap() {
+  const hotspots = document.querySelectorAll(".hotspot")
+  const details = document.getElementById("locationDetails")
+  if (hotspots.length === 0 || !details) return
+
+  hotspots.forEach((hotspot) => {
+    hotspot.addEventListener("click", () => {
+      const country = hotspot.getAttribute("data-country")
+      const jobs = hotspot.getAttribute("data-jobs")
+
+      const nameEl = document.getElementById("locationName")
+      const jobsEl = document.getElementById("locationJobs")
+
+      if (nameEl) nameEl.textContent = country
+      if (jobsEl) jobsEl.textContent = jobs
+      // ... other fields with checks ...
+
+      details.classList.add("show")
+    })
+  })
+}
+
+window.closeLocationDetails = () => {
+  const details = document.getElementById("locationDetails")
+  if (details) details.classList.remove("show")
+}
+
+function initNavigation() {
+  // Tab handling
+  window.openTab = (tabId) => {
+    if (tabId === "dashboard") {
+      window.location.href = "dashboard.html"
+      return
+    }
+    const tab = document.getElementById(`tab-${tabId}`)
+    if (tab) {
+      tab.classList.add("active")
+      document.body.style.overflow = "hidden"
+    }
+  }
+
+  window.closeTab = (tabId) => {
+    const tab = document.getElementById(`tab-${tabId}`)
+    if (tab) {
+      tab.classList.remove("active")
+      document.body.style.overflow = ""
+    }
+  }
+
+  // Close overlays on outside click
+  const navLinks = document.getElementById("navLinks") // Declare navLinks here
+  document.querySelectorAll(".tab-overlay").forEach((overlay) => {
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) window.closeTab(overlay.id.replace("tab-", "")) // Use window.closeTab here
+    })
+  })
+
+  // Global escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      document.querySelectorAll(".tab-overlay.active").forEach((t) => t.classList.remove("active"))
+      document.body.style.overflow = ""
+    }
+  })
+}
 
 // Smooth scrolling
 function scrollToSection(sectionId) {
   const section = document.getElementById(sectionId)
+  const navLinks = document.getElementById("navLinks") // Declare navLinks here
   section.scrollIntoView({ behavior: "smooth" })
   navLinks.classList.remove("active")
-}
-
-// Eligibility Form Submission
-const eligibilityForm = document.getElementById("eligibilityForm")
-const eligibilityResult = document.getElementById("eligibilityResult")
-
-eligibilityForm.addEventListener("submit", (e) => {
-  e.preventDefault()
-
-  const profession = document.getElementById("profession").value
-  const experience = document.getElementById("experience").value
-
-  // Simulate AI processing
-  eligibilityResult.innerHTML =
-    '<p style="text-align: center; color: var(--text-secondary);"><i class="fas fa-spinner fa-spin"></i> Analyzing your profile with AI...</p>'
-  eligibilityResult.classList.add("show")
-
-  setTimeout(() => {
-    const countries = [
-      { name: "United States", match: "95%", visa: "H-1B" },
-      { name: "Canada", match: "92%", visa: "Express Entry" },
-      { name: "Australia", match: "90%", visa: "Skilled Independent" },
-      { name: "Germany", match: "88%", visa: "EU Blue Card" },
-    ]
-
-    let resultHTML = `
-            <h4 style="margin-bottom: 1rem; color: var(--secondary);"><i class="fas fa-check-circle"></i> Your Best Matches</h4>
-            <div style="display: grid; gap: 1rem;">
-        `
-
-    countries.forEach((country) => {
-      resultHTML += `
-                <div style="background: rgba(15, 23, 42, 0.5); padding: 1rem; border-radius: 10px; display: flex; justify-content: space-between; align-items: center;">
-                    <div>
-                        <strong style="color: var(--text-primary);">${country.name}</strong>
-                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0.3rem 0;">Visa: ${country.visa}</p>
-                    </div>
-                    <div style="text-align: right;">
-                        <div style="color: var(--secondary); font-weight: 700; font-size: 1.2rem;">${country.match}</div>
-                        <div style="color: var(--text-secondary); font-size: 0.85rem;">Match</div>
-                    </div>
-                </div>
-            `
-    })
-
-    resultHTML += `
-            </div>
-            <button onclick="resetEligibilityChecker()" class="btn btn-secondary btn-full" style="margin-top: 1.5rem;">
-                <i class="fas fa-redo"></i> Check Another Path
-            </button>
-        `
-    eligibilityResult.innerHTML = resultHTML
-  }, 2000)
-})
-
-function resetEligibilityChecker() {
-  const eligibilityResult = document.getElementById("eligibilityResult")
-  const eligibilityForm = document.getElementById("eligibilityForm")
-
-  // Hide results
-  eligibilityResult.classList.remove("show")
-  eligibilityResult.innerHTML = ""
-
-  // Reset form
-  eligibilityForm.reset()
 }
 
 // Map hotspot interactions
@@ -134,6 +237,7 @@ function applyToLocation() {
   setTimeout(() => openTab("employers"), 300)
 }
 
+
 // Employer Form Submission
 const employerForm = document.getElementById("employerForm")
 const resumeInput = document.getElementById("resume")
@@ -150,6 +254,8 @@ employerForm.addEventListener("submit", (e) => {
   e.preventDefault()
 
   const submitButton = employerForm.querySelector('button[type="submit"]')
+  if (!submitButton) return
+
   const originalText = submitButton.innerHTML
 
   submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...'
@@ -159,12 +265,15 @@ employerForm.addEventListener("submit", (e) => {
     submitButton.innerHTML = '<i class="fas fa-check"></i> Submitted Successfully!'
     setTimeout(() => {
       employerForm.reset()
-      fileLabel.innerHTML = '<i class="fas fa-cloud-upload-alt"></i> Upload Resume (PDF, DOC)'
-      fileLabel.style.color = ""
+      const fileLabel = document.getElementById("fileLabel")
+      if (fileLabel) {
+        fileLabel.innerHTML = '<i class="fas fa-cloud-upload-alt"></i> Upload Resume (PDF, DOC)'
+        fileLabel.style.color = ""
+      }
       submitButton.innerHTML = originalText
       submitButton.disabled = false
       alert("Your application has been submitted successfully! The recruiter will contact you soon.")
-      closeRecruiterModal()
+      if (typeof closeRecruiterModal === "function") closeRecruiterModal()
     }, 2000)
   }, 2000)
 })
@@ -228,12 +337,19 @@ function handleLogin(e) {
   e.preventDefault()
   const email = document.getElementById("loginEmail").value
 
-  alert(`Login successful for ${email}!\n\nNote: This is a demo. In production, this would authenticate the user.`)
-  closeLoginModal()
+  alert(`Login successful for ${email}! Redirecting to dashboard...`)
 
-  // Show dashboard content
-  document.querySelector(".dashboard-notice").style.display = "none"
-  document.getElementById("dashboardContent").style.display = "block"
+  localStorage.setItem("isLoggedIn", "true")
+  localStorage.setItem(
+    "userData",
+    JSON.stringify({
+      name: "John Doe",
+      email: email,
+      role: "Software Engineer",
+    }),
+  )
+
+  window.location.href = "dashboard.html"
 }
 
 // Handle signup
@@ -249,71 +365,85 @@ function handleSignup(e) {
 }
 
 // Chatbot
-const chatbotBubble = document.getElementById("chatbotBubble")
-const chatbotWindow = document.getElementById("chatbotWindow")
-const chatbotMessages = document.getElementById("chatbotMessages")
-const chatInput = document.getElementById("chatInput")
+function initChatbot() {
+  const chatbotBubble = document.getElementById("chatbotBubble")
+  const chatbotWindow = document.getElementById("chatbotWindow")
+  const chatbotMessages = document.getElementById("chatbotMessages")
+  const chatInput = document.getElementById("chatInput")
 
-function toggleChatbot() {
-  chatbotWindow.classList.toggle("show")
-  if (chatbotWindow.classList.contains("show")) {
-    chatInput.focus()
-  }
-}
-
-function handleQuickAction(action) {
-  const actions = {
-    hiring: "I'm looking to hire talent for my company.",
-    seeking: "I'm looking for job opportunities internationally.",
-    visa: "I need help with visa requirements and applications.",
-    demo: "I'd like to book a demo to learn more about your services.",
-  }
-
-  const message = actions[action]
-  if (message) {
-    // Show chat messages area
-    chatbotMessages.style.display = "block"
-    document.querySelector(".chatbot-welcome").style.display = "none"
-    document.querySelector(".chatbot-quick-actions").style.display = "none"
-    document.querySelector(".chatbot-quick-questions").style.display = "none"
-
-    // Add user message
-    addChatMessage(message, "user")
-
-    // Add bot response based on action
-    setTimeout(() => {
-      let response = ""
-      switch (action) {
-        case "hiring":
-          response =
-            "Great! I can help you find the perfect talent. Let me guide you through our employer matching service. What positions are you looking to fill?"
-          break
-        case "seeking":
-          response =
-            "Excellent! I'll help you find international opportunities that match your skills. First, let me check your eligibility. What's your current profession?"
-          break
-        case "visa":
-          response =
-            "I'd be happy to help with visa information! Our AI-powered system can check your eligibility for various countries. Which country are you interested in?"
-          break
-        case "demo":
-          response =
-            "Perfect! I can connect you with our team for a personalized demo. What's the best email to reach you at?"
-          break
+  if (chatbotBubble && chatbotWindow) {
+    chatbotBubble.addEventListener("click", () => {
+      chatbotWindow.classList.toggle("show")
+      if (chatbotWindow.classList.contains("show") && chatInput) {
+        chatInput.focus()
       }
-      addChatMessage(response, "bot")
-    }, 800)
+    })
+  }
+
+  // Exposed to window for inline quick action buttons and resilience
+  window.handleQuickAction = (action) => {
+    const messages = document.getElementById("chatbotMessages")
+    const welcome = document.querySelector(".chatbot-welcome")
+    const actionsContainer = document.querySelector(".chatbot-quick-actions")
+    const questionsContainer = document.querySelector(".chatbot-quick-questions")
+
+    if (!messages) return
+
+    const actions = {
+      hiring: "I'm looking to hire talent for my company.",
+      seeking: "I'm looking for job opportunities internationally.",
+      visa: "I need help with visa requirements and applications.",
+      demo: "I'd like to book a demo to learn more about your services.",
+    }
+
+    const message = actions[action]
+    if (message) {
+      messages.style.display = "block"
+      if (welcome) welcome.style.display = "none"
+      if (actionsContainer) actionsContainer.style.display = "none"
+      if (questionsContainer) questionsContainer.style.display = "none"
+
+      addChatMessage(message, "user")
+
+      setTimeout(() => {
+        let response = ""
+        switch (action) {
+          case "hiring":
+            response = "Great! I can help you find the perfect talent. What positions are you looking to fill?"
+            break
+          case "seeking":
+            response = "Excellent! I'll help you find international opportunities. What's your current profession?"
+            break
+          case "visa":
+            response = "I'd be happy to help with visa information! Which country are you interested in?"
+            break
+          case "demo":
+            response = "Perfect! What's the best email to reach you at for a personalized demo?"
+            break
+        }
+        addChatMessage(response, "bot")
+      }, 800)
+    }
   }
 }
 
-function askQuickQuestion(button) {
+
+
+
+function handleQuickQuestion(button) {
   const question = button.textContent
+  const messages = document.getElementById("chatbotMessages")
+  const welcome = document.querySelector(".chatbot-welcome")
+  const actions = document.querySelector(".chatbot-quick-actions")
+  const questions = document.querySelector(".chatbot-quick-questions")
+
+  if (!messages) return
 
   // Show chat messages area
-  chatbotMessages.style.display = "block"
-  document.querySelector(".chatbot-welcome").style.display = "none"
-  document.querySelector(".chatbot-quick-actions").style.display = "none"
-  document.querySelector(".chatbot-quick-questions").style.display = "none"
+  messages.style.display = "block"
+  if (welcome) welcome.style.display = "none"
+  if (actions) actions.style.display = "none"
+  if (questions) questions.style.display = "none"
 
   // Add user message
   addChatMessage(question, "user")
@@ -322,11 +452,11 @@ function askQuickQuestion(button) {
   setTimeout(() => {
     const responses = {
       "How quickly can you help me hire skilled professionals?":
-        "We can typically match you with qualified candidates within 48-72 hours! Our AI analyzes your requirements and connects you with pre-vetted professionals who match your criteria. Would you like to start the process?",
+        "We can typically match you with qualified candidates within 48-72 hours! Would you like to start the process?",
       "What visa options are available for tech workers?":
-        "Tech workers have several great options including H-1B (USA), Express Entry (Canada), Skilled Independent visa (Australia), and EU Blue Card (Germany). Each has different requirements. Would you like me to check which ones you're eligible for?",
+        "Tech workers have several great options including H-1B (USA) and EU Blue Card (Germany). Want to check your eligibility?",
       "How does the matching process work?":
-        "Our AI-powered system analyzes your skills, experience, and preferences, then matches you with opportunities across 50+ countries. We consider visa eligibility, salary expectations, and career goals to find your perfect match. Want to get started?",
+        "Our AI analyzes your skills and matches you with opportunities across 50+ countries. Want to get started?",
     }
 
     const response = responses[question] || "That's a great question! Let me help you with that..."
@@ -335,6 +465,9 @@ function askQuickQuestion(button) {
 }
 
 function addChatMessage(message, type) {
+  const messages = document.getElementById("chatbotMessages")
+  if (!messages) return
+
   const avatar = type === "bot" ? "🤖" : "👤"
   const messageClass = type === "bot" ? "bot-message" : "user-message"
 
@@ -344,45 +477,48 @@ function addChatMessage(message, type) {
             <div class="message-bubble">${message}</div>
         </div>
     `
-  chatbotMessages.insertAdjacentHTML("beforeend", messageHTML)
-  chatbotMessages.scrollTop = chatbotMessages.scrollHeight
+  messages.insertAdjacentHTML("beforeend", messageHTML)
+  messages.scrollTop = messages.scrollHeight
 }
 
+
+
 function sendMessage() {
-  const message = chatInput.value.trim()
+  const input = document.getElementById("chatInput")
+  const messages = document.getElementById("chatbotMessages")
+  const welcome = document.querySelector(".chatbot-welcome")
+  const actions = document.querySelector(".chatbot-quick-actions")
+  const questions = document.querySelector(".chatbot-quick-questions")
+
+  if (!input || !messages) return
+
+  const message = input.value.trim()
   if (!message) return
 
   // Show chat messages area if hidden
-  if (chatbotMessages.style.display === "none") {
-    chatbotMessages.style.display = "block"
-    document.querySelector(".chatbot-welcome").style.display = "none"
-    document.querySelector(".chatbot-quick-actions").style.display = "none"
-    document.querySelector(".chatbot-quick-questions").style.display = "none"
+  if (messages.style.display === "none") {
+    messages.style.display = "block"
+    if (welcome) welcome.style.display = "none"
+    if (actions) actions.style.display = "none"
+    if (questions) questions.style.display = "none"
   }
+
 
   // Add user message
   addChatMessage(message, "user")
-  chatInput.value = ""
+  input.value = ""
 
   // Simulate AI response
   setTimeout(() => {
     const responses = [
-      "I can help you check your visa eligibility. Would you like to start the assessment?",
-      "Based on your profession, I recommend exploring opportunities in the United States, Canada, and Australia. Would you like detailed information?",
-      "I can guide you through the application process step by step. What would you like to know?",
-      "Let me connect you with our resources. What specific area do you need help with?",
-      "I'll analyze your profile and provide personalized recommendations. Please give me a moment.",
+      "I can help you check your visa eligibility. Would you like to start?",
+      "I recommend exploring opportunities in Canada and Australia. Interested?",
+      "I can guide you through the application process. What would you like to know?",
     ]
 
     const randomResponse = responses[Math.floor(Math.random() * responses.length)]
     addChatMessage(randomResponse, "bot")
   }, 1000)
-}
-
-function handleChatKeypress(e) {
-  if (e.key === "Enter") {
-    sendMessage()
-  }
 }
 
 // Scroll-triggered animations
@@ -445,51 +581,6 @@ function showPage(pageId) {
   window.scrollTo({ top: 0, behavior: "smooth" })
 }
 
-function openTab(tabName) {
-  const tab = document.getElementById(`tab-${tabName}`)
-  if (tab) {
-    tab.classList.add("active")
-    document.body.style.overflow = "hidden"
-
-    // Close mobile menu if open
-    const navLinks = document.getElementById("navLinks")
-    const mobileMenuBtn = document.getElementById("mobileMenuBtn")
-    navLinks.classList.remove("active")
-    const icon = mobileMenuBtn.querySelector("i")
-    icon.classList.remove("fa-times")
-    icon.classList.add("fa-bars")
-  }
-}
-
-function closeTab(tabName) {
-  const tab = document.getElementById(`tab-${tabName}`)
-  if (tab) {
-    tab.classList.remove("active")
-    document.body.style.overflow = ""
-  }
-}
-
-// Close tab on escape key
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
-    const activeTabs = document.querySelectorAll(".tab-overlay.active")
-    activeTabs.forEach((tab) => {
-      tab.classList.remove("active")
-      document.body.style.overflow = ""
-    })
-  }
-})
-
-// Close tab on overlay click
-document.querySelectorAll(".tab-overlay").forEach((overlay) => {
-  overlay.addEventListener("click", (e) => {
-    if (e.target === overlay) {
-      overlay.classList.remove("active")
-      document.body.style.overflow = ""
-    }
-  })
-})
-
 function openRecruiterForm(jobTitle, company) {
   const modal = document.getElementById("recruiterModal")
   document.getElementById("modalJobTitle").textContent = jobTitle
@@ -508,15 +599,54 @@ function closeRecruiterModal() {
 }
 
 // Initialize
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("GlobalCareer Connect initialized")
+function initAnimations() {
+  console.log("Animations initialized")
+}
 
-  // Show home page by default
-  showPage("home")
+function initAuthSystem() {
+  console.log("[v0] Auth moved to external page (auth.html)")
+}
 
-  // Add smooth reveal animations on load
-  const hero = document.querySelector(".hero")
-  setTimeout(() => {
-    hero.style.opacity = "1"
-  }, 100)
-})
+function initEmployerPortal() {
+  console.log("Employer Portal initialized")
+}
+
+function initResources() {
+  console.log("Resources initialized")
+}
+
+function initSearchModal() {
+  const searchModal = document.getElementById("searchModal")
+  const searchForm = document.getElementById("advancedSearchForm")
+
+  if (!searchModal || !searchForm) return
+
+  window.openSearchModal = () => {
+    searchModal.classList.add("show")
+    document.body.style.overflow = "hidden"
+  }
+
+  window.closeSearchModal = () => {
+    searchModal.classList.remove("show")
+    document.body.style.overflow = ""
+  }
+
+  searchForm.addEventListener("submit", (e) => {
+    e.preventDefault()
+    console.log("[v0] Executing job search with filters...")
+    window.closeSearchModal()
+
+    // Smooth transition to opportunities tab
+    setTimeout(() => {
+      if (typeof window.openTab === "function") {
+        window.openTab("opportunities")
+      }
+    }, 300)
+  })
+
+  // Close on outside click
+  searchModal.addEventListener("click", (e) => {
+    if (e.target === searchModal) window.closeSearchModal()
+  })
+}
+

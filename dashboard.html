@@ -338,19 +338,20 @@
     <aside class="sidebar">
         <div class="sidebar-logo">
             <i class="fas fa-globe-americas"></i>
-            <span>RobertWalters</span>
+            <span>GlobalCareer</span>
         </div>
         <nav class="sidebar-nav">
             <a href="#" class="sidebar-link active"><i class="fas fa-th-large"></i> <span>Overview</span></a>
             <a href="#" class="sidebar-link"><i class="fas fa-briefcase"></i> <span>Applications</span></a>
             <a href="#" class="sidebar-link"><i class="fas fa-passport"></i> <span>Visa Status</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-wallet"></i> <span>Wallet & Payments</span></a>
             <a href="#" class="sidebar-link"><i class="fas fa-search"></i> <span>Find Jobs</span></a>
             <a href="#" class="sidebar-link"><i class="fas fa-cog"></i> <span>Settings</span></a>
         </nav>
         <div class="sidebar-user">
-            <div class="user-avatar">OJ</div>
+            <div class="user-avatar">JD</div>
             <div class="user-details">
-                <div style="font-weight: 600;">Ossie Jay</div>
+                <div style="font-weight: 600;">John Doe</div>
                 <div style="font-size: 0.75rem; color: #94a3b8;">Software Engineer</div>
             </div>
             <a href="index.html" style="margin-left: auto; color: #94a3b8;"><i class="fas fa-sign-out-alt"></i></a>
@@ -360,7 +361,7 @@
     <main class="main-content">
         <header class="dashboard-header">
             <div class="welcome-text">
-                <h1>Welcome back, Ossy!</h1>
+                <h1>Welcome back, John!</h1>
                 <p>You have 3 active applications this week.</p>
             </div>
             <div class="header-actions">
@@ -409,6 +410,18 @@
                         </div>
                         <span class="status-badge status-pending">Pending Review</span>
                     </div>
+                </div>
+            </div>
+
+            <div class="glass-card col-span-4">
+                <div class="tracker-header">
+                    <h3>Wallet Balance</h3>
+                    <i class="fas fa-wallet" style="color: #22c55e;"></i>
+                </div>
+                <div class="wallet-content" style="margin-top: 1rem;">
+                    <div style="font-size: 1.8rem; font-weight: 800;">KES 12,500</div>
+                    <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 0.5rem;">Next billing: Jan 15, 2025</p>
+                    <button class="btn btn-small btn-primary" style="margin-top: 1.5rem; width: 100%;">Add Funds</button>
                 </div>
             </div>
 
@@ -486,17 +499,15 @@
         */
 
         // Mobile menu toggle functionality
-    document.getElementById('mobileToggle').addEventListener('click', () => {
-        document.querySelector('.sidebar').classList.toggle('active');
-        document.getElementById('sidebarOverlay').style.display = document.querySelector('.sidebar').classList.contains('active') ? 'block' : 'none';
-    });
+        document.getElementById('mobileToggle').addEventListener('click', () => {
+            document.querySelector('.sidebar').classList.toggle('active');
+            document.getElementById('sidebarOverlay').style.display = document.querySelector('.sidebar').classList.contains('active') ? 'block' : 'none';
+        });
 
-    document.getElementById('sidebarOverlay').addEventListener('click', () => {
-        document.querySelector('.sidebar').classList.remove('active');
-        document.getElementById('sidebarOverlay').style.display = 'none';
-    });
-
-        
+        document.getElementById('sidebarOverlay').addEventListener('click', () => {
+            document.querySelector('.sidebar').classList.remove('active');
+            document.getElementById('sidebarOverlay').style.display = 'none';
+        });
     </script>
     <script src="dashboard.js"></script>
 </body>
