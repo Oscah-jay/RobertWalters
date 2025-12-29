@@ -3089,6 +3089,7 @@ input[type="range"]::-webkit-slider-thumb {
 
 /* Floating Contact Bubble */
 .contact-bubble {
+  text-decoration: none;
   position: fixed;
   bottom: 2rem;
   right: 2rem;
