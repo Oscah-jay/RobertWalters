@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Support & Communication</title>
+    <style>
+        :root {
+            --primary: #0ea5e9;
+            --secondary: #06b6d4;
+            --accent: #8b5cf6;
+            --dark-bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.6s ease-out;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* Notification Bar */
+        .notification-bar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 350px;
+            max-height: 90vh;
+            background: var(--card-bg);
+            border-left: 3px solid var(--primary);
+            padding: 1.5rem;
+            z-index: 1000;
+            transition: right 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            overflow-y: auto;
+            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .notification-bar.active {
+            right: 0;
+        }
+
+        .notification-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+        }
+
+        .notification-header h3 {
+            color: var(--text-primary);
+        }
+
+        .close-notifications {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-notifications:hover {
+            color: var(--text-primary);
+        }
+
+        .notification-item {
+            background: rgba(14, 165, 233, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 3px solid var(--primary);
+            animation: slideInRight 0.4s ease-out;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .notification-item:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 5px 15px rgba(14, 165, 233, 0.3);
+        }
+
+        .notification-item.success {
+            border-left-color: var(--success);
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .notification-item.warning {
+            border-left-color: var(--warning);
+            background: rgba(245, 158, 11, 0.1);
+        }
+
+        .notification-time {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Main Grid */
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Cards */
+        .support-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 0.6s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .support-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .support-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(14, 165, 233, 0.2);
+        }
+
+        .support-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            animation: pulse 2s infinite;
+        }
+
+        .card-header h2 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+            transform: translateY(-2px);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(14, 165, 233, 0.4);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        /* Ticketing System */
+        .ticket-list {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+        }
+
+        .ticket-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .ticket-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(5px);
+        }
+
+        .ticket-item.open {
+            border-left-color: var(--warning);
+        }
+
+        .ticket-item.resolved {
+            border-left-color: var(--success);
+            opacity: 0.7;
+        }
+
+        .ticket-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .ticket-id {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .ticket-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .ticket-status.open {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--warning);
+        }
+
+        .ticket-status.resolved {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+        }
+
+        /* Live Chat */
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 500px;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .chat-message {
+            margin-bottom: 1rem;
+            animation: messageSlide 0.3s ease-out;
+        }
+
+        .chat-message.user {
+            text-align: right;
+        }
+
+        .chat-bubble {
+            display: inline-block;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            max-width: 70%;
+            word-wrap: break-word;
+        }
+
+        .chat-message.support .chat-bubble {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .chat-message.user .chat-bubble {
+            background: rgba(139, 92, 246, 0.3);
+            color: var(--text-primary);
+        }
+
+        .chat-sender {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.25rem;
+        }
+
+        .chat-input-container {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .chat-input {
+            flex: 1;
+        }
+
+        /* Floating Action Buttons */
+        .fab-container {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 999;
+        }
+
+        .fab {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.4);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .fab:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.6);
+        }
+
+        .fab-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--warning);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            animation: bounce 1s infinite;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes messageSlide {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .chat-input-container {
+                margin-top: 1rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .support-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .notification-bar {
+                width: 100%;
+                right: -100%;
+            }
+
+            .fab-container {
+                bottom: 1rem;
+                right: 1rem;
+            }
+
+            .fab {
+                width: 50px;
+                height: 50px;
+                font-size: 1.25rem;
+            }
+
+            .chat-bubble {
+                max-width: 85%;
+            }
+        }
+
+        /* Success Message */
+        .success-message {
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid var(--success);
+            color: var(--success);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            animation: fadeInUp 0.4s ease-out;
+        }
+
+        /* Typing Indicator */
+        .typing-indicator {
+            display: none;
+            padding: 0.75rem;
+        }
+
+        .typing-indicator.active {
+            display: block;
+        }
+
+        .typing-dots {
+            display: inline-flex;
+            gap: 4px;
+        }
+
+        .typing-dots span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--primary);
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+                opacity: 0.5;
+            }
+            30% {
+                transform: translateY(-10px);
+                opacity: 1;
+            }
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .quick-action-btn {
+            padding: 0.5rem 1rem;
+            background: rgba(14, 165, 233, 0.2);
+            border: 1px solid var(--primary);
+            border-radius: 20px;
+            color: var(--primary);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .quick-action-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .back-home-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.back-home-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(-3px);
+}
+
+.header {
+  position: relative;
+}
+
+.back-home-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <a href="index.html" class="back-home-btn">← Back Home</a>
+            <h1>Client Support & Communication</h1>
+            <p>We're here to help you every step of the way</p>
+        </header>
+
+        <div class="support-grid">
+            <!-- Live Chat -->
+            <div class="support-card" style="grid-column: span 2;">
+                <div class="card-header">
+                    <div class="card-icon">💬</div>
+                    <h2>Live Chat</h2>
+                </div>
+                <div class="chat-container">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="chat-message support">
+                            <div class="chat-sender">Support Agent</div>
+                            <div class="chat-bubble">Hello! How can I help you today?</div>
+                        </div>
+                    </div>
+                    <div class="typing-indicator" id="typingIndicator">
+                        <div class="chat-sender">Support is typing</div>
+                        <div class="typing-dots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="quick-actions">
+                        <button class="quick-action-btn" onclick="sendQuickMessage('I need help with visa processing')">Visa Processing</button>
+                        <button class="quick-action-btn" onclick="sendQuickMessage('What is my application status?')">Application Status</button>
+                        <button class="quick-action-btn" onclick="sendQuickMessage('I have a payment issue')">Payment Issue</button>
+                    </div>
+                    <div class="chat-input-container">
+                        <input type="text" class="form-control chat-input" id="chatInput" placeholder="Type your message...">
+                        <button class="btn btn-primary" onclick="sendMessage()">Send</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email Support -->
+            <div class="support-card">
+                <div class="card-header">
+                    <div class="card-icon">✉️</div>
+                    <h2>Email Support</h2>
+                </div>
+                <form id="emailForm">
+                    <div class="form-group">
+                        <label>Your Email</label>
+                        <input type="email" class="form-control" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Subject</label>
+                        <input type="text" class="form-control" placeholder="How can we help?" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea class="form-control" placeholder="Describe your issue..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Email</button>
+                </form>
+                <div id="emailSuccess" style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Ticketing System -->
+        <div class="support-card">
+            <div class="card-header">
+                <div class="card-icon">🎫</div>
+                <h2>Support Tickets</h2>
+            </div>
+            
+            <div class="ticket-list" id="ticketList">
+                <div class="ticket-item open" onclick="viewTicket('TKT-001')">
+                    <div class="ticket-header">
+                        <span class="ticket-id">#TKT-001</span>
+                        <span class="ticket-status open">Open</span>
+                    </div>
+                    <div>Visa documentation assistance needed</div>
+                    <div class="notification-time">Created 2 hours ago</div>
+                </div>
+                <div class="ticket-item open" onclick="viewTicket('TKT-002')">
+                    <div class="ticket-header">
+                        <span class="ticket-id">#TKT-002</span>
+                        <span class="ticket-status open">Open</span>
+                    </div>
+                    <div>Payment verification issue</div>
+                    <div class="notification-time">Created 5 hours ago</div>
+                </div>
+                <div class="ticket-item resolved" onclick="viewTicket('TKT-003')">
+                    <div class="ticket-header">
+                        <span class="ticket-id">#TKT-003</span>
+                        <span class="ticket-status resolved">Resolved</span>
+                    </div>
+                    <div>Account access problems</div>
+                    <div class="notification-time">Resolved yesterday</div>
+                </div>
+            </div>
+
+            <button class="btn btn-success" style="width: 100%;" onclick="createNewTicket()">Create New Ticket</button>
+        </div>
+    </div>
+
+    <!-- Notification Bar -->
+    <div class="notification-bar" id="notificationBar">
+        <div class="notification-header">
+            <h3>Notifications</h3>
+            <button class="close-notifications" onclick="toggleNotifications()">×</button>
+        </div>
+        <div id="notificationList">
+            <div class="notification-item success">
+                <strong>Ticket Updated</strong>
+                <p>Your ticket #TKT-001 has been assigned to an agent</p>
+                <div class="notification-time">5 minutes ago</div>
+            </div>
+            <div class="notification-item">
+                <strong>New Message</strong>
+                <p>You have a new response from support</p>
+                <div class="notification-time">15 minutes ago</div>
+            </div>
+            <div class="notification-item warning">
+                <strong>Action Required</strong>
+                <p>Please upload required documents for your application</p>
+                <div class="notification-time">1 hour ago</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Buttons -->
+    <div class="fab-container">
+        <button class="fab" onclick="toggleNotifications()" title="Notifications">
+            🔔
+            <span class="fab-badge">3</span>
+        </button>
+    </div>
+
+    <script>
+        // Chat functionality
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                addChatMessage(message, 'user');
+                input.value = '';
+                
+                // Simulate support response
+                showTypingIndicator();
+                setTimeout(() => {
+                    hideTypingIndicator();
+                    const responses = [
+                        "Thank you for reaching out! Let me help you with that.",
+                        "I understand your concern. Let me check that for you.",
+                        "Great question! Here's what I can tell you...",
+                        "I'm here to help. Could you provide more details?"
+                    ];
+                    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                    addChatMessage(randomResponse, 'support');
+                }, 2000);
+            }
+        }
+
+        function sendQuickMessage(message) {
+            addChatMessage(message, 'user');
+            showTypingIndicator();
+            setTimeout(() => {
+                hideTypingIndicator();
+                addChatMessage("I'll be happy to help you with that. Let me get the information for you.", 'support');
+            }, 1500);
+        }
+
+        function addChatMessage(text, sender) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-message ${sender}`;
+            
+            const senderLabel = sender === 'user' ? 'You' : 'Support Agent';
+            messageDiv.innerHTML = `
+                <div class="chat-sender">${senderLabel}</div>
+                <div class="chat-bubble">${text}</div>
+            `;
+            
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            document.getElementById('typingIndicator').classList.add('active');
+        }
+
+        function hideTypingIndicator() {
+            document.getElementById('typingIndicator').classList.remove('active');
+        }
+
+        // Enter key to send message
+        document.getElementById('chatInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Email form submission
+        document.getElementById('emailForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const form = this;
+            const successDiv = document.getElementById('emailSuccess');
+            
+            successDiv.innerHTML = '<div class="success-message">✓ Email sent successfully! We\'ll respond within 24 hours.</div>';
+            successDiv.style.display = 'block';
+            
+            form.reset();
+            
+            setTimeout(() => {
+                successDiv.style.display = 'none';
+            }, 5000);
+
+            // Add notification
+            addNotification('Email Sent', 'Your support email has been received', 'success');
+        });
+
+        // Ticketing system
+        function viewTicket(ticketId) {
+            alert(`Opening ticket ${ticketId}\n\nIn a full implementation, this would open a detailed view of the ticket with conversation history and status updates.`);
+        }
+
+        function createNewTicket() {
+            const title = prompt('Enter ticket title:');
+            if (title) {
+                const ticketList = document.getElementById('ticketList');
+                const ticketCount = ticketList.children.length + 1;
+                const ticketId = `TKT-${String(ticketCount).padStart(3, '0')}`;
+                
+                const ticketDiv = document.createElement('div');
+                ticketDiv.className = 'ticket-item open';
+                ticketDiv.onclick = () => viewTicket(ticketId);
+                ticketDiv.innerHTML = `
+                    <div class="ticket-header">
+                        <span class="ticket-id">#${ticketId}</span>
+                        <span class="ticket-status open">Open</span>
+                    </div>
+                    <div>${title}</div>
+                    <div class="notification-time">Created just now</div>
+                `;
+                
+                ticketList.insertBefore(ticketDiv, ticketList.firstChild);
+                
+                addNotification('Ticket Created', `Ticket ${ticketId} has been created successfully`, 'success');
+            }
+        }
+
+        // Notifications
+        function toggleNotifications() {
+            const notificationBar = document.getElementById('notificationBar');
+            notificationBar.classList.toggle('active');
+        }
+
+        function addNotification(title, message, type = '') {
+            const notificationList = document.getElementById('notificationList');
+            const notificationDiv = document.createElement('div');
+            notificationDiv.className = `notification-item ${type}`;
+            notificationDiv.innerHTML = `
+                <strong>${title}</strong>
+                <p>${message}</p>
+                <div class="notification-time">Just now</div>
+            `;
+            
+            notificationList.insertBefore(notificationDiv, notificationList.firstChild);
+            
+            // Update badge count
+            const badge = document.querySelector('.fab-badge');
+            const currentCount = parseInt(badge.textContent);
+            badge.textContent = currentCount + 1;
+            
+            // Auto-show notification bar briefly
+            const notificationBar = document.getElementById('notificationBar');
+            notificationBar.classList.add('active');
+            setTimeout(() => {
+                notificationBar.classList.remove('active');
+            }, 3000);
+        }
+
+        // Close notifications when clicking outside
+        document.addEventListener('click', function(e) {
+            const notificationBar = document.getElementById('notificationBar');
+            const fab = document.querySelector('.fab');
+            
+            if (notificationBar.classList.contains('active') && 
+                !notificationBar.contains(e.target) && 
+                !fab.contains(e.target)) {
+                notificationBar.classList.remove('active');
+            }
+        });
+
+        // Simulate random notifications
+        setInterval(() => {
+            const notifications = [
+                { title: 'System Update', message: 'New features available in your dashboard', type: '' },
+                { title: 'Reminder', message: 'Complete your profile for better support', type: 'warning' },
+                { title: 'Success', message: 'Your document has been verified', type: 'success' }
+            ];
+            
+            const random = notifications[Math.floor(Math.random() * notifications.length)];
+            
+            // 20% chance to show a notification every 15 seconds
+            if (Math.random() < 0.2) {
+                addNotification(random.title, random.message, random.type);
+            }
+        }, 15000);
+    </script>
+</body>
+</html>
