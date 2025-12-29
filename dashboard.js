@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
    */
   function initUserStats() {
     const welcomeTitle = document.querySelector(".welcome-text h1")
-    const userData = JSON.parse(localStorage.getItem("userData") || '{"name": "John Doe"}')
+    const userData = JSON.parse(localStorage.getItem("userData") || '{"name": "Ossy"}')
   
     if (welcomeTitle) {
       welcomeTitle.textContent = `Welcome back, ${userData.name.split(" ")[0]}!`
