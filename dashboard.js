@@ -47,10 +47,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // checkAuth()
   
     // Initialize all dashboard components
-    initUserStats()
-    initApplicationTracker()
-    initVisaProgress()
-    initDashboardNavigation()
+  initUserStats()
+  initApplicationTracker()
+  initVisaProgress()
+  initDashboardNavigation()
+  initResumeUpload() // Initialized new features
   })
   
   /**
@@ -143,10 +144,52 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
   
-  /**
-   * Helper to add new application (Demo functionality)
-   */
-  window.addNewApplication = () => {
-    alert("This would open a form to manually add or sync a new job application.")
+/**
+ * Handles Resume Upload functionality
+ */
+function initResumeUpload() {
+  const dropZone = document.getElementById("dropZone")
+  const fileInput = document.getElementById("resumeUpload")
+
+  if (dropZone && fileInput) {
+    dropZone.addEventListener("click", () => fileInput.click())
+
+    dropZone.addEventListener("dragover", (e) => {
+      e.preventDefault()
+      dropZone.style.borderColor = "#38bdf8"
+      dropZone.style.background = "rgba(56, 189, 248, 0.05)"
+    })
+
+    dropZone.addEventListener("dragleave", () => {
+      dropZone.style.borderColor = "rgba(255, 255, 255, 0.1)"
+      dropZone.style.background = "transparent"
+    })
+
+    dropZone.addEventListener("drop", (e) => {
+      e.preventDefault()
+      const files = e.dataTransfer.files
+      if (files.length) {
+        handleFileUpload(files[0])
+      }
+    })
+
+    fileInput.addEventListener("change", (e) => {
+      if (e.target.files.length) {
+        handleFileUpload(e.target.files[0])
+      }
+    })
   }
+}
+
+function handleFileUpload(file) {
+  console.log(`[v0] Uploading file: ${file.name}`)
+  alert(`Successfully uploaded: ${file.name}. In a real app, this would be stored in the database.`)
+}
+
+/**
+ * Helper to add new application (Demo functionality)
+ */
+window.addNewApplication = () => {
+  alert("This would open a form to manually add or sync a new job application.")
+}
   

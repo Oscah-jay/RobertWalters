@@ -10,6 +10,12 @@
         :root {
             --sidebar-width: 280px;
             --sidebar-collapsed-width: 80px;
+            --primary: #0ea5e9;
+            --secondary: #06b6d4;
+            --dark-bg: #0b0f1a;
+            --card-bg: rgba(30, 41, 59, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --radius: 1.5rem;
         }
 
         body {
@@ -22,79 +28,6 @@
             overflow-x: hidden;
         }
 
-        /* Dashboard Sidebar - Morphism Improved */
-        .sidebar {
-            width: var(--sidebar-width);
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            flex-direction: column;
-            padding: 2rem;
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100vh;
-            z-index: 1000;
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 10px 0 40px rgba(0, 0, 0, 0.4);
-        }
-
-        .sidebar-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
-            color: #38bdf8;
-        }
-
-        .sidebar-nav {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            flex-grow: 1;
-        }
-
-        .sidebar-link {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            border-radius: 12px;
-            color: #94a3b8;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .sidebar-link:hover, .sidebar-link.active {
-            background: rgba(56, 189, 248, 0.1);
-            color: #38bdf8;
-        }
-
-        .sidebar-user {
-            margin-top: auto;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .user-avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #38bdf8, #2dd4bf);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: #0f172a;
-        }
 
         /* Main Content - Fixed Separation */
         .main-content {
@@ -326,6 +259,409 @@
                 align-self: flex-start;
             }
         }
+
+         /* Dashboard Sidebar - Morphism Improved */
+         .sidebar {
+            background: rgba(11, 15, 26, 0.8);
+            backdrop-filter: blur(30px);
+            border-right: 1px solid var(--glass-border);
+            width: var(--sidebar-width);
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            z-index: 1000;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 10px 0 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: #38bdf8;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            flex-grow: 1;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 12px;
+            color: #94a3b8;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-link:hover, .sidebar-link.active {
+            background: rgba(56, 189, 248, 0.1);
+            color: #38bdf8;
+        }
+
+        .sidebar-user {
+            margin-top: auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #38bdf8, #2dd4bf);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        /* Main Content - Fixed Separation */
+        .main-content {
+            margin-left: var(--sidebar-width); /* Ensure explicit gap */
+            flex-grow: 1;
+            padding: 3rem;
+            max-width: calc(100% - var(--sidebar-width)); /* Prevent overflow */
+            width: 100%;
+            min-width: 0;
+            min-height: 100vh;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            position: relative;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .welcome-text h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .welcome-text p {
+            color: #94a3b8;
+        }
+
+        /* Grid Layout - Morphism & Visibility */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 2rem;
+            width: 100%;
+        }
+
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(56, 189, 248, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .col-span-8 { grid-column: span 8; }
+        .col-span-4 { grid-column: span 4; }
+        .col-span-12 { grid-column: span 12; }
+
+        /* Application Tracker Stage Improvements */
+        .tracker-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
+        .application-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .application-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.25rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .company-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: #1e293b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .app-info {
+            flex-grow: 1;
+        }
+
+        .app-info h4 {
+            margin-bottom: 0.25rem;
+        }
+
+        .app-info p {
+            font-size: 0.875rem;
+            color: #94a3b8;
+        }
+
+        .status-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-pending { background: rgba(234, 179, 8, 0.1); color: #eab308; }
+        .status-interview { background: rgba(56, 189, 248, 0.1); color: #38bdf8; }
+        .status-offer { background: rgba(34, 197, 94, 0.1); color: #22c55e; }
+
+        /* Multi-stage Tracker */
+        .stage-progress {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            position: relative;
+        }
+
+        .stage-progress::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 1;
+        }
+
+        .stage-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #1e293b;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            z-index: 2;
+            position: relative;
+        }
+
+        .stage-dot.active {
+            background: #38bdf8;
+            border-color: #38bdf8;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+        }
+
+        .stage-dot.completed {
+            background: #22c55e;
+            border-color: #22c55e;
+        }
+
+        /* New Dashboard Components */
+        .job-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 1rem;
+        }
+
+        .alert-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .alert-item:last-child { border-bottom: none; }
+
+        .upload-area {
+            border: 2px dashed rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary);
+            background: rgba(14, 165, 233, 0.05);
+        }
+
+        .btn-sm {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.75rem;
+            border-radius: 8px;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-toggle {
+            display: none;
+            position: fixed;
+            top: 1.5rem;
+            left: 1.5rem;
+            z-index: 1100;
+            background: #38bdf8;
+            color: #0f172a;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1200px) {
+            .col-span-8, .col-span-4 { grid-column: span 12; }
+        }
+
+        @media (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 280px;
+                height: 90vh;
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 6rem 1rem 2rem;
+            }
+
+            .mobile-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1200px) {
+            .col-span-8, .col-span-4 { grid-column: span 12; }
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 300px;
+            }
+            .sidebar.active {
+                transform: translateX(0);
+                box-shadow: 20px 0 60px rgba(0,0,0,0.8);
+            }
+            .main-content {
+                margin-left: 0;
+                max-width: 100%;
+                padding: 6rem 1.5rem 2rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 280px;
+            }
+
+            .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            border-radius: 12px;
+            color: #94a3b8;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 6rem 1rem 2rem;
+            }
+
+            .mobile-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .dashboard-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.5rem;
+            }
+            
+            .header-actions {
+                width: 100%;
+            }
+            
+            .header-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .application-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .status-badge {
+                align-self: flex-start;
+            }
+        }
     </style>
 </head>
 <body>
@@ -343,6 +679,9 @@
         <nav class="sidebar-nav">
             <a href="#" class="sidebar-link active"><i class="fas fa-th-large"></i> <span>Overview</span></a>
             <a href="#" class="sidebar-link"><i class="fas fa-briefcase"></i> <span>Applications</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-heart"></i> <span>Saved Jobs</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-bell"></i> <span>Job Alerts</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-file-upload"></i> <span>Resumes</span></a>
             <a href="#" class="sidebar-link"><i class="fas fa-passport"></i> <span>Visa Status</span></a>
             <a href="#" class="sidebar-link"><i class="fas fa-wallet"></i> <span>Wallet & Payments</span></a>
             <a href="#" class="sidebar-link"><i class="fas fa-search"></i> <span>Find Jobs</span></a>
@@ -449,42 +788,112 @@
                 </ul>
             </div>
             
-            <div class="glass-card col-span-4">
-                <div style="display: flex; align-items: center; gap: 1rem;">
-                    <div style="width: 50px; height: 50px; background: rgba(56, 189, 248, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #38bdf8;">
-                        <i class="fas fa-eye"></i>
-                    </div>
+
+        <!-- Saved Jobs Section -->
+        <div class="glass-card col-span-4">
+            <div class="tracker-header">
+                <h3>Saved Jobs</h3>
+                <a href="#" class="text-primary" style="text-decoration: none; font-size: 0.8rem;">View All</a>
+            </div>
+            <div class="job-list">
+                <div class="job-card">
                     <div>
-                        <div style="font-size: 0.875rem; color: #94a3b8;">Profile Views</div>
-                        <div style="font-size: 1.5rem; font-weight: 700;">1,284</div>
+                        <div style="font-weight: 600;">Fullstack Developer</div>
+                        <div style="font-size: 0.75rem; color: #94a3b8;">Atlassian • Remote</div>
                     </div>
+                    <button class="btn btn-sm btn-primary">Apply</button>
+                </div>
+                <div class="job-card">
+                    <div>
+                        <div style="font-weight: 600;">Product Manager</div>
+                        <div style="font-size: 0.75rem; color: #94a3b8;">Spotify • Stockholm</div>
+                    </div>
+                    <button class="btn btn-sm btn-primary">Apply</button>
                 </div>
             </div>
-            
-            <div class="glass-card col-span-4">
-                <div style="display: flex; align-items: center; gap: 1rem;">
-                    <div style="width: 50px; height: 50px; background: rgba(45, 212, 191, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #2dd4bf;">
-                        <i class="fas fa-file-alt"></i>
-                    </div>
-                    <div>
-                        <div style="font-size: 0.875rem; color: #94a3b8;">Resumes Sent</div>
-                        <div style="font-size: 1.5rem; font-weight: 700;">42</div>
-                    </div>
+        </div>
+
+        <!-- Resume Upload Section -->
+        <div class="glass-card col-span-4">
+            <h3>Resume & Documents</h3>
+            <div class="upload-area" id="dropZone">
+                <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                <p style="font-size: 0.85rem; margin-bottom: 0.5rem;">Upload new resume</p>
+                <span style="font-size: 0.7rem; color: #94a3b8;">PDF, DOCX (Max 5MB)</span>
+                <input type="file" id="resumeUpload" hidden accept=".pdf,.docx">
+            </div>
+            <div style="margin-top: 1.5rem;">
+                <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; background: rgba(255,255,255,0.03); padding: 0.75rem; border-radius: 8px;">
+                    <span><i class="fas fa-file-pdf" style="color: #ef4444; margin-right: 0.5rem;"></i> main_resume_2024.pdf</span>
+                    <i class="fas fa-ellipsis-v" style="color: #94a3b8; cursor: pointer;"></i>
                 </div>
             </div>
-            
-            <div class="glass-card col-span-4">
-                <div style="display: flex; align-items: center; gap: 1rem;">
-                    <div style="width: 50px; height: 50px; background: rgba(139, 92, 246, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #8b5cf6;">
-                        <i class="fas fa-clock"></i>
+        </div>
+
+        <!-- Job Alerts Section -->
+        <div class="glass-card col-span-4">
+            <div class="tracker-header">
+                <h3>Job Alerts</h3>
+                <i class="fas fa-cog" style="color: #94a3b8; cursor: pointer;"></i>
+            </div>
+            <div class="alerts-list">
+                <div class="alert-item">
+                    <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(14, 165, 233, 0.1); display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                        <i class="fas fa-search"></i>
                     </div>
                     <div>
-                        <div style="font-size: 0.875rem; color: #94a3b8;">Avg. Response</div>
-                        <div style="font-size: 1.5rem; font-weight: 700;">3 Days</div>
+                        <div style="font-size: 0.85rem; font-weight: 600;">Backend Engineer</div>
+                        <div style="font-size: 0.7rem; color: #94a3b8;">UK • Visa Sponsored • Daily</div>
+                    </div>
+                </div>
+                <div class="alert-item">
+                    <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(45, 212, 191, 0.1); display: flex; align-items: center; justify-content: center; color: #2dd4bf;">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.85rem; font-weight: 600;">Remote UI/UX Design</div>
+                        <div style="font-size: 0.7rem; color: #94a3b8;">Global • Weekly</div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="glass-card col-span-4">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <div style="width: 50px; height: 50px; background: rgba(56, 189, 248, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #38bdf8;">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <div>
+                    <div style="font-size: 0.875rem; color: #94a3b8;">Profile Views</div>
+                    <div style="font-size: 1.5rem; font-weight: 700;">1,284</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="glass-card col-span-4">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <div style="width: 50px; height: 50px; background: rgba(45, 212, 191, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #2dd4bf;">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <div>
+                    <div style="font-size: 0.875rem; color: #94a3b8;">Resumes Sent</div>
+                    <div style="font-size: 1.5rem; font-weight: 700;">42</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="glass-card col-span-4">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <div style="width: 50px; height: 50px; background: rgba(139, 92, 246, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #8b5cf6;">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div>
+                    <div style="font-size: 0.875rem; color: #94a3b8;">Avg. Response</div>
+                    <div style="font-size: 1.5rem; font-weight: 700;">3 Days</div>
+                </div>
+            </div>
+        </div>
+    </div>
     </main>
 
     <script>

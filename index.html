@@ -275,44 +275,174 @@
 
 
      <!-- Employers Tab Overlay -->
-     <div class="tab-overlay" id="tab-employers">
+    <div class="tab-overlay" id="tab-employers">
         <div class="tab-content">
-           
-            <div class="section-header">
+            <div class="section-header7">
                 <h2><i class="fas fa-handshake"></i> International Employers</h2>
                 <p>Browse verified sponsors and contact recruiters directly</p>
             </div>
             
             <div class="tab-body">
-                <!-- Updated Employers UI to match the requested design with company header and job cards -->
-                <div class="company-profile">
-                    <div class="company-header">
-                        <div class="company-logo">NG</div>
-                        <div class="company-info">
-                            <h3>NexGen Tech Solutions</h3>
-                            <span class="sponsor-badge"><i class="fas fa-circle"></i> Verified Tier-2 Sponsor (UK)</span>
-                        </div>
-                    </div>
-                    
-                    <div class="jobs-grid">
-                        <div class="job-card">
-                            <div class="job-details">
-                                <h4>Senior Backend Engineer</h4>
-                                <p>London, UK • Full Relocation</p>
+                <!-- Added Verified Sponsorship Info Section -->
+                <div class="sponsorship-info-section">
+                    <h3 class="section-title">Verified Sponsorship Information</h3>
+                    <div class="sponsorship-grid">
+                        <div class="sponsorship-card">
+                            <div class="sponsorship-icon">
+                                <i class="fas fa-check-circle"></i>
                             </div>
-                            <button class="btn btn-primary btn-full" onclick="openRecruiterForm('Senior Backend Engineer', 'NexGen Tech Solutions')">
-                                Contact Recruiter
-                            </button>
+                            <h4>Sponsorship Availability</h4>
+                            <p>Real-time verification of employers actively sponsoring international workers across multiple visa categories.</p>
+                            <span class="sponsorship-status active">Currently Active</span>
                         </div>
                         
-                        <div class="job-card">
-                            <div class="job-details">
-                                <h4>DevOps Lead</h4>
-                                <p>Berlin, Germany • Blue Card Route</p>
+                        <div class="sponsorship-card">
+                            <div class="sponsorship-icon">
+                                <i class="fas fa-passport"></i>
                             </div>
-                            <button class="btn btn-primary btn-full" onclick="openRecruiterForm('DevOps Lead', 'NexGen Tech Solutions')">
-                                Contact Recruiter
-                            </button>
+                            <h4>Visa Types Supported</h4>
+                            <p>Comprehensive list of supported visa categories including skilled worker, intra-company transfer, and specialized visas.</p>
+                            <div class="visa-types-list">
+                                <span class="visa-badge">Skilled Worker</span>
+                                <span class="visa-badge">H-1B</span>
+                                <span class="visa-badge">Blue Card</span>
+                                <span class="visa-badge">Tier 2</span>
+                            </div>
+                        </div>
+                        
+                        <div class="sponsorship-card">
+                            <div class="sponsorship-icon">
+                                <i class="fas fa-plane-departure"></i>
+                            </div>
+                            <h4>Relocation Assistance</h4>
+                            <p>Employers offering comprehensive relocation packages including flights, temporary housing, and settlement support.</p>
+                            <ul class="assistance-list">
+                                <li><i class="fas fa-check"></i> Flight tickets covered</li>
+                                <li><i class="fas fa-check"></i> Temporary accommodation</li>
+                                <li><i class="fas fa-check"></i> Moving allowance</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="sponsorship-card">
+                            <div class="sponsorship-icon">
+                                <i class="fas fa-history"></i>
+                            </div>
+                            <h4>Employer Sponsorship History</h4>
+                            <p>Track record of successful visa sponsorships, approval rates, and average processing times for transparency.</p>
+                            <div class="history-stats">
+                                <div class="history-stat">
+                                    <strong>95%</strong>
+                                    <span>Approval Rate</span>
+                                </div>
+                                <div class="history-stat">
+                                    <strong>3-6</strong>
+                                    <span>Months Average</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Added Detailed Employer Profiles Section -->
+                <div class="employer-profiles-section">
+                    <h3 class="section-header8">Featured Employer Profiles</h3>
+                    
+                    <!-- NexGen Tech Solutions -->
+                    <div class="company-profile-detailed">
+                        <div class="company-header">
+                            <div class="company-logo">NG</div>
+                            <div class="company-info">
+                                <h3>NexGen Tech Solutions</h3>
+                                <span class="sponsor-badge"><i class="fas fa-circle"></i> Verified Tier-2 Sponsor (UK)</span>
+                                <div class="company-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <span>4.5 (127 reviews)</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="company-details-grid">
+                            <div class="detail-section">
+                                <h4><i class="fas fa-shield-alt"></i> Sponsorship Policies</h4>
+                                <ul class="policy-list">
+                                    <li>Sponsors skilled workers for permanent positions</li>
+                                    <li>Covers visa application fees up to £1,500</li>
+                                    <li>Provides immigration legal support</li>
+                                    <li>Offers dependent visa sponsorship</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="detail-section">
+                                <h4><i class="fas fa-id-card"></i> Visa Types Supported</h4>
+                                <div class="visa-types-grid">
+                                    <span class="visa-type-badge primary">Tier 2 (General)</span>
+                                    <span class="visa-type-badge secondary">Skilled Worker</span>
+                                    <span class="visa-type-badge accent">Intra-Company Transfer</span>
+                                </div>
+                            </div>
+                            
+                            <div class="detail-section">
+                                <h4><i class="fas fa-map-marker-alt"></i> Hiring Locations</h4>
+                                <div class="locations-grid">
+                                    <div class="location-item">
+                                        <i class="fas fa-building"></i>
+                                        <div>
+                                            <strong>London, UK</strong>
+                                            <span>Headquarters - 50+ positions</span>
+                                        </div>
+                                    </div>
+                                    <div class="location-item">
+                                        <i class="fas fa-building"></i>
+                                        <div>
+                                            <strong>Manchester, UK</strong>
+                                            <span>Regional Office - 20+ positions</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="detail-section">
+                                <h4><i class="fas fa-comments"></i> Reviews & Contact</h4>
+                                <div class="reviews-preview">
+                                    <blockquote>
+                                        "Smooth sponsorship process. HR team was very supportive throughout my relocation."
+                                        <cite>- Former Applicant, Software Engineer</cite>
+                                    </blockquote>
+                                    <blockquote>
+                                        "Great company culture and excellent visa support. Highly recommend!"
+                                        <cite>- Current Employee, DevOps Engineer</cite>
+                                    </blockquote>
+                                </div>
+                                <button class="btn btn-primary" onclick="openRecruiterForm('General Application', 'NexGen Tech Solutions')">
+                                    <i class="fas fa-envelope"></i> Contact Company
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="jobs-grid">
+                            <div class="job-card">
+                                <div class="job-details">
+                                    <h4>Senior Backend Engineer</h4>
+                                    <p>London, UK • Full Relocation</p>
+                                </div>
+                                <button class="btn btn-primary btn-full" onclick="openRecruiterForm('Senior Backend Engineer', 'NexGen Tech Solutions')">
+                                    Contact Recruiter
+                                </button>
+                            </div>
+                            
+                            <div class="job-card">
+                                <div class="job-details">
+                                    <h4>DevOps Lead</h4>
+                                    <p>Berlin, Germany • Blue Card Route</p>
+                                </div>
+                                <button class="btn btn-primary btn-full" onclick="openRecruiterForm('DevOps Lead', 'NexGen Tech Solutions')">
+                                    Contact Recruiter
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -404,7 +534,7 @@
     <section class="section mobility-services">
         <div class="container">
             <div class="section-header4">
-                <h2 class="section-title">Global Mobility Services</h2>
+                <h2 class="section-title1">Global Mobility Services</h2>
                 <p class="section-subtitle">Seamless relocation support for you and your family</p>
             </div>
             <div class="mobility-grid">
@@ -515,7 +645,7 @@
     <section class="section" id="resources">
         <div class="container">
             <div class="section-header5">
-                <h2 class="section-title">Resources & Guides</h2>
+                <h2 class="section-title2">Resources & Guides</h2>
                 <p class="section-subtitle">Everything you need for a successful international career move</p>
             </div>
             
