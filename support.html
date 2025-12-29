@@ -539,6 +539,7 @@
 
             .header h1 {
                 font-size: 2rem;
+                margin-top: 4rem;
             }
 
             .support-grid {
@@ -564,6 +565,20 @@
             .chat-bubble {
                 max-width: 85%;
             }
+
+            .back-home-btn {
+             display: inline-flex;
+             align-items: center;
+             gap: 0.4rem;
+             margin-bottom: -2rem;
+             font-size: 0.9rem;
+             font-weight: 600;
+             color: var(--primary);
+             text-decoration: none;
+             padding: 0.4rem 0.8rem;
+             border-radius: 6px;
+             transition: background 0.2s ease, transform 0.2s ease;
+}
         }
 
         /* Success Message */
@@ -671,6 +686,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  margin-top: 2rem;
 }
 
 
@@ -678,8 +694,8 @@
 </head>
 <body>
     <div class="container">
+        <a href="index.html" class="back-home-btn">← Back Home</a>
         <header class="header">
-            <a href="index.html" class="back-home-btn">← Back Home</a>
             <h1>Client Support & Communication</h1>
             <p>We're here to help you every step of the way</p>
         </header>
