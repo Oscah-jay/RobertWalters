@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Global App Controller
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("[v0] Initializing Independent Components...")
+  console.log("Initializing Independent Components...")
   initNavbar()
   initMobileMenu()
   initEligibilityChecker()
@@ -586,7 +586,7 @@ function initAnimations() {
 }
 
 function initAuthSystem() {
-  console.log("[v0] Auth moved to external page (auth.html)")
+  console.log("Auth moved to external page (auth.html)")
 }
 
 function initEmployerPortal() {
@@ -615,7 +615,7 @@ function initSearchModal() {
 
   searchForm.addEventListener("submit", (e) => {
     e.preventDefault()
-    console.log("[v0] Executing job search with filters...")
+    console.log(" Executing job search with filters...")
     window.closeSearchModal()
 
     // Smooth transition to opportunities tab

@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
       })
     })
   
-    console.log("[v0] Initializing Dashboard System...")
+    console.log("Initializing Dashboard System...")
   
     // checkAuth()
   
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
     applicationItems.forEach((item) => {
       item.addEventListener("click", () => {
         const company = item.querySelector("h4")?.textContent
-        console.log(`[v0] Viewing details for: ${company}`)
+        console.log(`Viewing details for: ${company}`)
         // In a real app, this would open a detailed view or modal
       })
     })
@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function initVisaProgress() {
     const visaSection = document.querySelector(".glass-card h3")
     if (visaSection && visaSection.textContent.includes("Visa Progress")) {
-      console.log("[v0] Visa tracking initialized")
+      console.log("Visa tracking initialized")
     }
   }
   
@@ -182,7 +182,7 @@ function initResumeUpload() {
 }
 
 function handleFileUpload(file) {
-  console.log(`[v0] Uploading file: ${file.name}`)
+  console.log(` Uploading file: ${file.name}`)
   alert(`Successfully uploaded: ${file.name}. In a real app, this would be stored in the database.`)
 }
 
