@@ -677,13 +677,9 @@
             <span>RobertWalters</span>
         </div>
         <nav class="sidebar-nav">
-            <a href="#" class="sidebar-link active"><i class="fas fa-th-large"></i> <span>Overview</span></a>
-            <a href="#" class="sidebar-link"><i class="fas fa-briefcase"></i> <span>Applications</span></a>
-            <a href="#" class="sidebar-link"><i class="fas fa-heart"></i> <span>Saved Jobs</span></a>
             <a href="#" class="sidebar-link"><i class="fas fa-bell"></i> <span>Job Alerts</span></a>
-            <a href="#" class="sidebar-link"><i class="fas fa-file-upload"></i> <span>Resumes</span></a>
-            <a href="#" class="sidebar-link"><i class="fas fa-passport"></i> <span>Visa Status</span></a>
-            <a href="#" class="sidebar-link"><i class="fas fa-wallet"></i> <span>Wallet & Payments</span></a>
+            <a href="#financial" class="sidebar-link"><i class="fas fa-chart-line"></i> <span>Financial Solutions</span></a>
+            <a href="#payment-gateway" class="sidebar-link"><i class="fas fa-credit-card"></i> <span>Payment Gateway</span></a>
             <a href="#" class="sidebar-link"><i class="fas fa-search"></i> <span>Find Jobs</span></a>
             <a href="#" class="sidebar-link"><i class="fas fa-cog"></i> <span>Settings</span></a>
         </nav>
@@ -890,6 +886,261 @@
                 <div>
                     <div style="font-size: 0.875rem; color: #94a3b8;">Avg. Response</div>
                     <div style="font-size: 1.5rem; font-weight: 700;">3 Days</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Financial & Investment Solutions -->
+        <div class="glass-card col-span-12" id="financial">
+            <div class="tracker-header">
+                <h3><i class="fas fa-chart-line" style="color: var(--primary); margin-right: 0.5rem;"></i>Financial & Investment Solutions</h3>
+                <a href="#" style="color: #38bdf8; text-decoration: none; font-size: 0.875rem;">View All Transactions</a>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                <!-- Secure Payment Processing -->
+                <div style="background: rgba(14, 165, 233, 0.05); border: 1px solid rgba(14, 165, 233, 0.2); border-radius: 16px; padding: 1.5rem; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-4px)'; this.style.borderColor='rgba(14, 165, 233, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(14, 165, 233, 0.2)';">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                        <div style="width: 50px; height: 50px; background: rgba(14, 165, 233, 0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-shield-alt" style="font-size: 1.5rem; color: var(--primary);"></i>
+                        </div>
+                        <div>
+                            <h4 style="margin: 0; font-size: 1rem;">Secure Payment Processing</h4>
+                            <p style="font-size: 0.75rem; color: #94a3b8; margin: 0.25rem 0 0 0;">End-to-end encryption</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+                        <span style="font-size: 0.875rem; color: #94a3b8;">Last Payment</span>
+                        <span style="font-weight: 600; color: var(--success);">KES 15,000</span>
+                    </div>
+                    <button class="btn btn-sm btn-primary" style="width: 100%; margin-top: 1rem;">Make Payment</button>
+                </div>
+
+                <!-- Deposit Handling -->
+                <div style="background: rgba(45, 212, 191, 0.05); border: 1px solid rgba(45, 212, 191, 0.2); border-radius: 16px; padding: 1.5rem; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-4px)'; this.style.borderColor='rgba(45, 212, 191, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(45, 212, 191, 0.2)';">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                        <div style="width: 50px; height: 50px; background: rgba(45, 212, 191, 0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-piggy-bank" style="font-size: 1.5rem; color: #2dd4bf;"></i>
+                        </div>
+                        <div>
+                            <h4 style="margin: 0; font-size: 1rem;">Deposit Handling</h4>
+                            <p style="font-size: 0.75rem; color: #94a3b8; margin: 0.25rem 0 0 0;">Quick deposit management</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+                        <span style="font-size: 0.875rem; color: #94a3b8;">Total Deposits</span>
+                        <span style="font-weight: 600; color: #2dd4bf;">KES 45,000</span>
+                    </div>
+                    <button class="btn btn-sm btn-primary" style="width: 100%; margin-top: 1rem;">Add Deposit</button>
+                </div>
+
+                <!-- Client Wallets -->
+                <div style="background: rgba(139, 92, 246, 0.05); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 16px; padding: 1.5rem; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-4px)'; this.style.borderColor='rgba(139, 92, 246, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(139, 92, 246, 0.2)';">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                        <div style="width: 50px; height: 50px; background: rgba(139, 92, 246, 0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-wallet" style="font-size: 1.5rem; color: #8b5cf6;"></i>
+                        </div>
+                        <div>
+                            <h4 style="margin: 0; font-size: 1rem;">Client Wallets</h4>
+                            <p style="font-size: 0.75rem; color: #94a3b8; margin: 0.25rem 0 0 0;">Manage your balance</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+                        <span style="font-size: 0.875rem; color: #94a3b8;">Available Balance</span>
+                        <span style="font-weight: 600; color: #8b5cf6;">KES 12,500</span>
+                    </div>
+                    <button class="btn btn-sm btn-primary" style="width: 100%; margin-top: 1rem;">View Wallet</button>
+                </div>
+
+                <!-- Refund & Withdrawal Management -->
+                <div style="background: rgba(245, 158, 11, 0.05); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: 16px; padding: 1.5rem; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-4px)'; this.style.borderColor='rgba(245, 158, 11, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(245, 158, 11, 0.2)';">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                        <div style="width: 50px; height: 50px; background: rgba(245, 158, 11, 0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-exchange-alt" style="font-size: 1.5rem; color: var(--warning);"></i>
+                        </div>
+                        <div>
+                            <h4 style="margin: 0; font-size: 1rem;">Refund & Withdrawal</h4>
+                            <p style="font-size: 0.75rem; color: #94a3b8; margin: 0.25rem 0 0 0;">Request refunds & withdrawals</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+                        <span style="font-size: 0.875rem; color: #94a3b8;">Pending Requests</span>
+                        <span style="font-weight: 600; color: var(--warning);">2</span>
+                    </div>
+                    <button class="btn btn-sm btn-primary" style="width: 100%; margin-top: 1rem;">Request Withdrawal</button>
+                </div>
+            </div>
+
+            <!-- Recent Transactions -->
+            <div style="margin-top: 2rem;">
+                <h4 style="margin-bottom: 1rem; color: #f1f5f9;">Recent Transactions</h4>
+                <div style="background: rgba(255, 255, 255, 0.02); border-radius: 12px; padding: 1rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 35px; height: 35px; border-radius: 8px; background: rgba(16, 185, 129, 0.1); display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-arrow-down" style="color: var(--success);"></i>
+                            </div>
+                            <div>
+                                <div style="font-size: 0.875rem; font-weight: 600;">Visa Application Payment</div>
+                                <div style="font-size: 0.75rem; color: #94a3b8;">Dec 28, 2024</div>
+                            </div>
+                        </div>
+                        <span style="font-weight: 600; color: var(--success);">+KES 75,000</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 35px; height: 35px; border-radius: 8px; background: rgba(239, 68, 68, 0.1); display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-arrow-up" style="color: #ef4444;"></i>
+                            </div>
+                            <div>
+                                <div style="font-size: 0.875rem; font-weight: 600;">Service Fee</div>
+                                <div style="font-size: 0.75rem; color: #94a3b8;">Dec 27, 2024</div>
+                            </div>
+                        </div>
+                        <span style="font-weight: 600; color: #ef4444;">-KES 5,000</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 35px; height: 35px; border-radius: 8px; background: rgba(16, 185, 129, 0.1); display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-arrow-down" style="color: var(--success);"></i>
+                            </div>
+                            <div>
+                                <div style="font-size: 0.875rem; font-weight: 600;">Wallet Top-up</div>
+                                <div style="font-size: 0.75rem; color: #94a3b8;">Dec 25, 2024</div>
+                            </div>
+                        </div>
+                        <span style="font-weight: 600; color: var(--success);">+KES 20,000</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Secure Payment Gateway -->
+        <div class="glass-card col-span-12" id="payment-gateway">
+            <div class="tracker-header">
+                <h3><i class="fas fa-credit-card" style="color: var(--secondary); margin-right: 0.5rem;"></i>Secure Payment Gateway</h3>
+                <div style="display: flex; gap: 0.5rem; align-items: center;">
+                    <span style="padding: 0.25rem 0.75rem; background: rgba(16, 185, 129, 0.1); color: var(--success); border-radius: 20px; font-size: 0.75rem; font-weight: 600;">
+                        <i class="fas fa-lock"></i> Secured
+                    </span>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                <!-- M-Pesa Integration -->
+                <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.05)); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 16px; padding: 2rem; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 10px 30px rgba(16, 185, 129, 0.2)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1.5rem;">
+                        <div>
+                            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                                <i class="fas fa-mobile-alt" style="font-size: 2rem; color: var(--success);"></i>
+                                <h4 style="margin: 0; font-size: 1.25rem;">M-Pesa</h4>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #94a3b8; margin: 0;">Pay with your mobile money</p>
+                        </div>
+                        <span style="background: rgba(16, 185, 129, 0.2); padding: 0.25rem 0.5rem; border-radius: 6px; font-size: 0.7rem; color: var(--success); font-weight: 600;">ACTIVE</span>
+                    </div>
+                    <div style="background: rgba(0, 0, 0, 0.2); border-radius: 12px; padding: 1rem; margin-bottom: 1rem;">
+                        <div style="font-size: 0.75rem; color: #94a3b8; margin-bottom: 0.25rem;">Linked Number</div>
+                        <div style="font-size: 1rem; font-weight: 600;">+254 7XX XXX 890</div>
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%; background: var(--success); border: none;">
+                        <i class="fas fa-phone"></i> Pay with M-Pesa
+                    </button>
+                </div>
+
+                <!-- Card Payments -->
+                <div style="background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(6, 182, 212, 0.05)); border: 1px solid rgba(14, 165, 233, 0.2); border-radius: 16px; padding: 2rem; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 10px 30px rgba(14, 165, 233, 0.2)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1.5rem;">
+                        <div>
+                            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                                <i class="fas fa-credit-card" style="font-size: 2rem; color: var(--primary);"></i>
+                                <h4 style="margin: 0; font-size: 1.25rem;">Card Payment</h4>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #94a3b8; margin: 0;">Visa, Mastercard & more</p>
+                        </div>
+                        <span style="background: rgba(14, 165, 233, 0.2); padding: 0.25rem 0.5rem; border-radius: 6px; font-size: 0.7rem; color: var(--primary); font-weight: 600;">ACTIVE</span>
+                    </div>
+                    <div style="background: rgba(0, 0, 0, 0.2); border-radius: 12px; padding: 1rem; margin-bottom: 1rem;">
+                        <div style="font-size: 0.75rem; color: #94a3b8; margin-bottom: 0.25rem;">Saved Cards</div>
+                        <div style="font-size: 1rem; font-weight: 600;">
+                            <i class="fab fa-cc-visa" style="margin-right: 0.5rem;"></i>
+                            •••• 4532
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%;">
+                        <i class="fas fa-credit-card"></i> Pay with Card
+                    </button>
+                </div>
+
+                <!-- Transaction Logging -->
+                <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(124, 58, 237, 0.05)); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 16px; padding: 2rem; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 10px 30px rgba(139, 92, 246, 0.2)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+                    <div style="margin-bottom: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                            <i class="fas fa-history" style="font-size: 2rem; color: #8b5cf6;"></i>
+                            <h4 style="margin: 0; font-size: 1.25rem;">Transaction Logging</h4>
+                        </div>
+                        <p style="font-size: 0.8rem; color: #94a3b8; margin: 0;">Complete payment history</p>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; background: rgba(0, 0, 0, 0.2); border-radius: 8px;">
+                            <span style="font-size: 0.875rem;">Total Transactions</span>
+                            <span style="font-weight: 700; color: #8b5cf6;">247</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; background: rgba(0, 0, 0, 0.2); border-radius: 8px;">
+                            <span style="font-size: 0.875rem;">This Month</span>
+                            <span style="font-weight: 700; color: #8b5cf6;">18</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%; margin-top: 1rem; background: #8b5cf6; border: none;">
+                        <i class="fas fa-file-invoice"></i> View All Logs
+                    </button>
+                </div>
+
+                <!-- Fraud Protection -->
+                <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.05)); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 16px; padding: 2rem; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 10px 30px rgba(239, 68, 68, 0.2)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+                    <div style="margin-bottom: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                            <i class="fas fa-shield-alt" style="font-size: 2rem; color: #ef4444;"></i>
+                            <h4 style="margin: 0; font-size: 1.25rem;">Fraud Protection</h4>
+                        </div>
+                        <p style="font-size: 0.8rem; color: #94a3b8; margin: 0;">24/7 security monitoring</p>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                        <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; background: rgba(0, 0, 0, 0.2); border-radius: 8px;">
+                            <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                            <span style="font-size: 0.875rem;">2FA Enabled</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; background: rgba(0, 0, 0, 0.2); border-radius: 8px;">
+                            <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                            <span style="font-size: 0.875rem;">SSL Encrypted</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; background: rgba(0, 0, 0, 0.2); border-radius: 8px;">
+                            <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                            <span style="font-size: 0.875rem;">PCI Compliant</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%; margin-top: 1rem; background: #ef4444; border: none;">
+                        <i class="fas fa-cog"></i> Security Settings
+                    </button>
+                </div>
+            </div>
+
+            <!-- Payment Method Stats -->
+            <div style="margin-top: 2rem; background: rgba(255, 255, 255, 0.02); border-radius: 12px; padding: 1.5rem;">
+                <h4 style="margin-bottom: 1rem;">Payment Method Usage</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                    <div style="text-align: center; padding: 1rem; background: rgba(16, 185, 129, 0.05); border-radius: 8px;">
+                        <div style="font-size: 2rem; font-weight: 700; color: var(--success); margin-bottom: 0.25rem;">68%</div>
+                        <div style="font-size: 0.875rem; color: #94a3b8;">M-Pesa Payments</div>
+                    </div>
+                    <div style="text-align: center; padding: 1rem; background: rgba(14, 165, 233, 0.05); border-radius: 8px;">
+                        <div style="font-size: 2rem; font-weight: 700; color: var(--primary); margin-bottom: 0.25rem;">28%</div>
+                        <div style="font-size: 0.875rem; color: #94a3b8;">Card Payments</div>
+                    </div>
+                    <div style="text-align: center; padding: 1rem; background: rgba(139, 92, 246, 0.05); border-radius: 8px;">
+                        <div style="font-size: 2rem; font-weight: 700; color: #8b5cf6; margin-bottom: 0.25rem;">4%</div>
+                        <div style="font-size: 0.875rem; color: #94a3b8;">Other Methods</div>
+                    </div>
                 </div>
             </div>
         </div>
